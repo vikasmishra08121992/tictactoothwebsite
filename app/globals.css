@@ -1,0 +1,420 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+  Brand tokens — Tic Tac Tooth.
+  Every bright hue also ships a "-text" variant, darkened until it clears
+  4.5:1 against --cream. Bright tokens are fills only; when a bright hue
+  needs to read as text it uses its -text pair, never the raw value.
+*/
+@theme inline {
+  --font-display: var(--font-baloo);
+  --font-sans: var(--font-body);
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-coral: var(--coral);
+  --color-coral-text: var(--coral-text);
+  --color-mint: var(--mint);
+  --color-mint-text: var(--mint-text);
+  --color-blush: var(--blush);
+  --color-blush-text: var(--blush-text);
+  --color-lime: var(--lime);
+  --color-lime-text: var(--lime-text);
+  --color-lavender: var(--lavender);
+  --color-lavender-text: var(--lavender-text);
+  --color-tangerine: var(--tangerine);
+  --color-tangerine-text: var(--tangerine-text);
+  --color-periwinkle: var(--periwinkle);
+  --color-periwinkle-text: var(--periwinkle-text);
+  --color-leaf: var(--leaf);
+  --color-leaf-text: var(--leaf-text);
+  --color-crimson: var(--crimson);
+  --color-crimson-btn: var(--crimson-btn);
+  --color-crimson-text: var(--crimson-text);
+  --color-cyan: var(--cyan);
+  --color-cyan-text: var(--cyan-text);
+  --color-gold: var(--gold);
+  --color-gold-text: var(--gold-text);
+  --color-sage: var(--sage);
+  --color-sage-text: var(--sage-text);
+  --color-teal: var(--teal);
+  --color-teal-text: var(--teal-text);
+  --color-camel: var(--camel);
+  --color-camel-text: var(--camel-text);
+  --color-midnight: var(--midnight);
+  --color-greige: var(--greige);
+  --color-greige-text: var(--greige-text);
+  --color-portal: var(--portal);
+  --color-portal-line: var(--portal-line);
+  --color-sage-deep: var(--sage-deep);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+}
+
+:root {
+  /*
+    Brand palette — single source of truth, referenced everywhere else.
+
+    The fill and letterform values below are sampled directly from the
+    client's supplied logo artwork, replacing the approximations the brief
+    started from. `--ink` is the deliberate exception: the logo's own grid
+    rule is a lighter #355C8C, but ink is also the body-text colour, where
+    the darker value earns 10.8:1 on cream instead of 6.2:1. The motif
+    reading a shade deeper than the logo is a fair trade for that.
+  */
+  --ink: #1d3a5c;
+  --cream: #fbf8f3;
+  --coral: #fd8376;
+  --coral-text: #a6362e;
+  --mint: #84d8d1;
+  --mint-text: #1f6d64;
+  --blush: #fba6ad;
+  --blush-text: #a03b54;
+  --lime: #c4dc7b;
+  --lime-text: #5b6e1e;
+  --lavender: #d0cee0;
+  --lavender-text: #4c4a85;
+  --tangerine: #fd9e70;
+  --tangerine-text: #93490e;
+  --periwinkle: #7a75c8;
+  --periwinkle-text: #3b3c8c;
+  --leaf: #5cbd76;
+  --leaf-text: #2c6b2e;
+  --crimson: #e7436a;
+  --crimson-btn: #b92b4e;
+  --crimson-text: #a11f3f;
+  --cyan: #38a8af;
+  --cyan-text: #1d6e87;
+  --gold: #fdc83c;
+  --gold-text: #7a5a00;
+  --sage: #7e8f7e;
+  --sage-text: #465046;
+  --teal: #3e9e97;
+  --teal-text: #215a55;
+  --camel: #b98e63;
+  --camel-text: #6b4f32;
+  --midnight: #2a2f4a;
+  --greige: #a99c92;
+  --greige-text: #5c5249;
+
+  /*
+    Portal ground. The staff tool needs a page colour that is calm under
+    fluorescent light for eight hours and that lets white cards read as raised.
+    Cream is the public site's ground and too warm here — beside a dense grid
+    it reads as a page rather than an application. This is a barely-tinted
+    cool grey: 1.05:1 against white, so cards separate without a border doing
+    the work, and 15.4:1 under --ink for body text.
+  */
+  --portal: #f1f2f4;
+  --portal-line: #dfe1e5;
+
+  /*
+    Secondary text is `text-ink/85` everywhere. A solid muted grey was tried
+    first, but it only held up on cream — once brand colours became section
+    grounds it failed against lavender, mint, gold and tangerine. Ink at 85%
+    adapts to whatever it sits on and clears AA on every ground in use.
+  */
+  --sage-deep: #3c4a3c; /* jungle ground: cream 8.7:1, gold 5.4:1 */
+
+  --radius: 1rem;
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--crimson-btn);
+  --primary-foreground: #ffffff;
+  --secondary: var(--mint);
+  --secondary-foreground: var(--mint-text);
+  --muted: #f1ece2;
+  --muted-foreground: var(--greige-text);
+  --accent: var(--tangerine);
+  --accent-foreground: var(--tangerine-text);
+  --destructive: var(--crimson-text);
+  --destructive-foreground: #ffffff;
+  --border: color-mix(in srgb, var(--ink) 14%, transparent);
+  --input: color-mix(in srgb, var(--ink) 22%, transparent);
+  --ring: var(--periwinkle-text);
+}
+
+/*
+  Teen & Special Needs registers: tighter radius, and headings drop the
+  rounded display face for the neutral sans — that single swap is most of
+  what separates the mature register from the child one.
+
+  The font-family is restated explicitly rather than by overriding
+  --font-display, because `@theme inline` resolves that variable at build
+  time and a runtime override of it would silently do nothing.
+*/
+.register-restrained {
+  --radius: 0.5rem;
+}
+.register-restrained h1,
+.register-restrained h2,
+.register-restrained h3,
+.register-restrained h4,
+.register-restrained .font-display {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.022em;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+    /*
+      No `scroll-behavior: smooth` here, deliberately.
+
+      The App Router resets scroll on navigation by calling
+      `window.scrollTo(0, 0)`, and CSS scroll-behavior applies to that call —
+      turning an instant reset into an animation that the incoming render
+      interrupts. The result was that every page opened at whatever scroll
+      position the previous one had: click "Treatments" from halfway down the
+      home page and you landed halfway down Treatments.
+
+      Nothing on this site needs it. There are no in-page anchor links, and the
+      skip link should jump instantly — a smooth-scrolled skip link is slower
+      and more disorienting for the keyboard users it exists for.
+
+      If a smooth in-page jump is ever wanted, scope it to that one call with
+      `element.scrollIntoView({ behavior: "smooth" })`, never globally here.
+    */
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  h1 {
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/*
+  Depth, texture and surface system. Shadows are tinted with ink rather than
+  neutral black — a grey drop-shadow on cream reads as dirt, an ink-tinted one
+  reads as considered.
+*/
+@layer utilities {
+  .shadow-soft {
+    box-shadow:
+      0 2px 6px -2px color-mix(in srgb, var(--ink) 12%, transparent),
+      0 16px 40px -24px color-mix(in srgb, var(--ink) 40%, transparent);
+  }
+  .shadow-lift {
+    box-shadow:
+      0 4px 10px -3px color-mix(in srgb, var(--ink) 14%, transparent),
+      0 28px 60px -28px color-mix(in srgb, var(--ink) 50%, transparent);
+  }
+  .shadow-pop {
+    box-shadow:
+      0 6px 0 0 color-mix(in srgb, var(--ink) 12%, transparent),
+      0 30px 70px -30px color-mix(in srgb, var(--ink) 55%, transparent);
+  }
+  .shadow-glow-gold {
+    box-shadow: 0 0 90px -10px color-mix(in srgb, var(--gold) 60%, transparent);
+  }
+
+  /* A true architectural arch: semicircular top, straight sides. Only
+     resolves to a real semicircle when height > width / 2. */
+  .arch {
+    border-radius: 9999px 9999px var(--radius) var(--radius);
+  }
+  .arch-soft {
+    border-radius: 9999px 9999px calc(var(--radius) * 1.5) calc(var(--radius) * 1.5);
+  }
+
+  /* Paper grain — keeps large flat colour fields from looking like plastic. */
+  .texture-grain {
+    position: relative;
+  }
+  .texture-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--ink) 12%, transparent) 0.5px,
+      transparent 0.5px
+    );
+    background-size: 4px 4px;
+  }
+
+  .wash-warm {
+    background-image: radial-gradient(
+        120% 90% at 10% 0%,
+        color-mix(in srgb, var(--blush) 92%, transparent) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        100% 85% at 94% 4%,
+        color-mix(in srgb, var(--mint) 85%, transparent) 0%,
+        transparent 58%
+      ),
+      radial-gradient(
+        95% 75% at 55% 105%,
+        color-mix(in srgb, var(--lavender) 88%, transparent) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        70% 60% at 80% 70%,
+        color-mix(in srgb, var(--gold) 45%, transparent) 0%,
+        transparent 62%
+      );
+  }
+
+  .wash-deep {
+    background-image: radial-gradient(
+        110% 80% at 15% 0%,
+        color-mix(in srgb, var(--periwinkle) 40%, transparent) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        90% 70% at 88% 90%,
+        color-mix(in srgb, var(--cyan) 26%, transparent) 0%,
+        transparent 62%
+      );
+  }
+
+  /* Sticker: a rotated, slightly lifted label — reads as something applied to
+     the page rather than laid out on it. */
+  .sticker {
+    box-shadow:
+      0 2px 0 0 color-mix(in srgb, var(--ink) 14%, transparent),
+      0 14px 30px -16px color-mix(in srgb, var(--ink) 55%, transparent);
+  }
+
+  .hover-lift {
+    transition:
+      transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .hover-lift:hover {
+    transform: translateY(-6px);
+  }
+
+  /*
+    Entrance motion.
+
+    `animation-fill-mode: backwards` is doing important work here: the
+    element's natural, un-animated state is the *visible* one, and the
+    from-state only applies during the delay. If animations never run —
+    reduced motion, an old browser, a failed stylesheet — everything is simply
+    visible. Nothing is ever hidden waiting for a callback.
+  */
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .animate-rise {
+    animation: rise-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  }
+
+  /* Staggers direct children — for card grids and lists. */
+  .stagger > * {
+    animation: rise-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  }
+  .stagger > *:nth-child(1) { animation-delay: 0.04s; }
+  .stagger > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger > *:nth-child(3) { animation-delay: 0.16s; }
+  .stagger > *:nth-child(4) { animation-delay: 0.22s; }
+  .stagger > *:nth-child(5) { animation-delay: 0.28s; }
+  .stagger > *:nth-child(6) { animation-delay: 0.34s; }
+  .stagger > *:nth-child(7) { animation-delay: 0.4s; }
+  .stagger > *:nth-child(8) { animation-delay: 0.46s; }
+  .stagger > *:nth-child(n + 9) { animation-delay: 0.5s; }
+
+  .delay-1 { animation-delay: 0.08s; }
+  .delay-2 { animation-delay: 0.16s; }
+  .delay-3 { animation-delay: 0.24s; }
+  .delay-4 { animation-delay: 0.32s; }
+}
+
+/* Press feedback on every button and button-styled link. */
+button:not(:disabled):active,
+a[data-slot="button"]:active {
+  transform: translateY(1px);
+}
+
+/* Stickers straighten and lift slightly when their card is hovered. */
+.hover-lift:hover .sticker,
+.sticker:hover {
+  transition: rotate 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  rotate: 0deg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip link — sized to the same 44px touch minimum as everything else. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
