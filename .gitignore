@@ -35,6 +35,11 @@ yarn-error.log*
 # is ignored; only the template with empty values is tracked.
 .env*
 !.env.example
+# .env is tracked deliberately, and is blank: it records which variables the
+# app needs so a deploy target knows what to set. Real values belong in
+# .env.local (ignored above) or in the host's own settings. If you ever put a
+# real value in .env, git will offer to commit it.
+!.env
 
 # vercel
 .vercel
