@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Section, SectionHeading } from "@/components/layout/section";
 import { ButtonLink } from "@/components/ui/button-link";
+import { PHOTO_QUALITY } from "@/lib/images";
 
 /**
  * The No Cavity Club, as it is on the wall.
@@ -21,6 +22,7 @@ export function NoCavityClubTeaser() {
             alt="The No Cavity Club mural on the reception wall: a winking superhero tooth in a gold crown and red cape holding a shield with the Tic Tac Tooth logo, above the words No Cavity Club, Super Smile Savers, and a rainbow"
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"
+            quality={PHOTO_QUALITY}
             className="object-cover"
           />
         </div>

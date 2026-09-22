@@ -5,6 +5,7 @@ import { Sticker } from "@/components/ui/sticker";
 import { Section, SectionHeading } from "@/components/layout/section";
 import { RoomMedia } from "@/components/rooms/room-media";
 import { rooms } from "@/lib/content/rooms";
+import { PHOTO_QUALITY } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Our Space",
@@ -20,6 +21,17 @@ export const metadata: Metadata = {
  * alt text describes what is actually in the frame rather than what a
  * caption would like it to evoke.
  */
+/*
+ * The grid is sm:grid-cols-3 with a 20px gap, so a tile is either two columns
+ * wide (~63vw of the viewport) or one (~31vw), and full width below sm. One
+ * `sizes` string cannot describe both: the earlier single value of 40vw
+ * understated the wide tiles by a third and the browser fetched a 640px
+ * candidate for a 634px box — half what a 2x screen needs, which is what made
+ * the gallery look soft. Derived from `span` so the two cannot drift apart.
+ */
+const WIDE_TILE_SIZES = "(min-width: 640px) 65vw, 100vw";
+const NARROW_TILE_SIZES = "(min-width: 640px) 33vw, 100vw";
+
 const galleryShots = [
   {
     src: "/images/rooms/space-room_wide-from-doorway.jpg",
@@ -80,8 +92,11 @@ export default function OurSpacePage() {
           src="/images/entrance/entrance_backlit-sign-dusk.jpg"
           alt="The Tic Tac Tooth Kids Dental Hospital entrance sign, dimensional pastel letters on a noughts-and-crosses grid, edge-lit in warm gold"
           fill
-          priority
+          // `priority` is deprecated in Next 16. This photograph is the LCP
+          // element on this route, so it preloads from <head>.
+          preload
           sizes="100vw"
+          quality={PHOTO_QUALITY}
           className="-z-10 object-cover opacity-35"
         />
         <div className="mx-auto max-w-[110rem] px-4 py-24 text-center md:px-6 md:py-32">
@@ -159,7 +174,12 @@ export default function OurSpacePage() {
 
               <div className={`grid gap-4 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
                 <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-                  <RoomMedia src={room.imageSrc} alt={room.imageAlt} />
+                  <RoomMedia
+                    src={room.imageSrc}
+                    alt={room.imageAlt}
+                    /* single column until lg, where this grid splits in two */
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                  />
                 </div>
                 <figure>
                   <div className="relative aspect-[3/4] max-h-[26rem] w-full overflow-hidden rounded-3xl sm:aspect-[4/3]">
@@ -168,6 +188,7 @@ export default function OurSpacePage() {
                       alt={room.ceilingAlt}
                       fill
                       sizes="(min-width: 1024px) 45vw, 100vw"
+                      quality={PHOTO_QUALITY}
                       className="object-cover"
                     />
                   </div>
@@ -205,7 +226,8 @@ export default function OurSpacePage() {
                   src={shot.src}
                   alt={shot.alt}
                   fill
-                  sizes="(min-width: 640px) 40vw, 100vw"
+                  sizes={shot.span ? WIDE_TILE_SIZES : NARROW_TILE_SIZES}
+                  quality={PHOTO_QUALITY}
                   className="object-cover"
                 />
               </div>
@@ -232,6 +254,7 @@ export default function OurSpacePage() {
               alt="The consultation room: a wood desk and two chairs in front of botanical wallpaper, framed qualifications on a shelf, and an arched doorway through to the jungle treatment room"
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
+              quality={PHOTO_QUALITY}
               className="object-cover"
             />
           </div>
@@ -241,6 +264,7 @@ export default function OurSpacePage() {
               alt="Dr. Roshni Chauhan at the consultation-room desk"
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
+              quality={PHOTO_QUALITY}
               className="object-cover object-[40%_center]"
             />
           </div>

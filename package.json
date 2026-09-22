@@ -9,6 +9,8 @@
     "lint": "eslint",
     "a11y": "node scripts/a11y.mjs",
     "responsive": "node scripts/responsive-check.mjs",
+    "images": "node scripts/image-check.mjs",
+    "images:build": "node scripts/build-images.mjs",
     "rls": "node scripts/rls-probe.mjs",
     "create-admin": "node scripts/create-admin.mjs",
     "db:reset": "supabase db reset --local",

@@ -3,6 +3,7 @@ import { ArrowRight, Ear, Clock3, Users, FileDown } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { ButtonLink } from "@/components/ui/button-link";
 import { clinic } from "@/lib/content/site";
+import { PHOTO_QUALITY } from "@/lib/images";
 
 const points = [
   { icon: Ear, label: "Sensory-friendly, low-stimulation appointments" },
@@ -29,6 +30,7 @@ export function SpecialNeedsTeaser() {
             alt="The consultation room at Tic Tac Tooth, with a wood desk and no dental chair, where the first conversation happens"
             fill
             sizes="(min-width: 1024px) 40vw, 100vw"
+            quality={PHOTO_QUALITY}
             className="object-cover object-[40%_center]"
           />
         </div>

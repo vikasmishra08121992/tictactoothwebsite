@@ -22,6 +22,10 @@ export function Logo({
   invert?: boolean;
 }) {
   const dims = size === "large" ? "h-20" : "h-14";
+  // The mark is 640x614, so h-20 renders 83px wide and h-14 renders 58px.
+  // Without this the browser assumes it may need the full intrinsic width and
+  // pulls a 640px master into a 58px box, on the critical path, on every page.
+  const renderedWidth = size === "large" ? "84px" : "59px";
 
   return (
     <Link
@@ -36,7 +40,11 @@ export function Logo({
         alt="Tic Tac Tooth"
         width={640}
         height={614}
-        priority
+        sizes={renderedWidth}
+        // `priority` is deprecated in Next 16. This sits in the header above
+        // the fold but is never the LCP element, so eager loading is right
+        // here and a <head> preload would only compete with the real one.
+        loading="eager"
         className={cn("w-auto object-contain", dims)}
       />
       <span

@@ -6,6 +6,7 @@ import { Sticker } from "@/components/ui/sticker";
 import { Section, SectionHeading } from "@/components/layout/section";
 import { ArchMask } from "@/components/motifs/arch-mask";
 import { doctor } from "@/lib/content/doctor";
+import { PHOTO_QUALITY } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Meet the Doctor",
@@ -27,8 +28,11 @@ export default function MeetTheDoctorPage() {
                 alt={doctor.portrait.alt}
                 fill
                 sizes="(min-width: 768px) 20rem, 16rem"
+                quality={PHOTO_QUALITY}
                 className="object-cover object-[35%_center]"
-                priority
+                // `priority` is deprecated in Next 16. This photograph is the LCP
+                // element on this route, so it preloads from <head>.
+                preload
               />
             </div>
           </ArchMask>
@@ -105,6 +109,7 @@ export default function MeetTheDoctorPage() {
               alt="The consultation room: a wood desk, two chairs, botanical wallpaper, framed qualifications on a shelf and an arched doorway into the jungle treatment room"
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
+              quality={PHOTO_QUALITY}
               className="object-cover"
             />
           </div>
@@ -114,6 +119,7 @@ export default function MeetTheDoctorPage() {
               alt={doctor.atWork.alt}
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
+              quality={PHOTO_QUALITY}
               className="object-cover object-[40%_center]"
             />
           </div>

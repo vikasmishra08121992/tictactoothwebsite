@@ -92,6 +92,43 @@ async function main() {
       const result = await page.evaluate((vw) => {
         const out = { overflow: null, smallTargets: [], clipped: [] };
 
+        /*
+          0. Content clipped by an overflow-hidden ancestor.
+
+          This rule exists because the check below it missed a real bug. The
+          hero mascot was sized by height, which made it 631px wide inside a
+          446px column — visibly sliced off at the right edge — but the hero
+          carries overflow-hidden, so document.scrollWidth stayed clean and
+          the run passed. Horizontal overflow of the PAGE is only the subset
+          of this problem that nothing happened to clip.
+        */
+        document.querySelectorAll("img, svg[role='img'], picture, video").forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.width < 8 || r.height < 8) return;
+          let node = el.parentElement;
+          while (node && node !== document.body) {
+            const cs = getComputedStyle(node);
+            if (cs.overflow !== "visible" && cs.overflowX !== "visible") {
+              const c = node.getBoundingClientRect();
+              // A hair over the edge is antialiasing or a deliberate bleed;
+              // 4px is where a viewer starts to see a flat cut.
+              const cut = Math.round(Math.max(c.left - r.left, r.right - c.right));
+              if (cut > 4) {
+                out.clipped.push({
+                  tag: el.tagName.toLowerCase(),
+                  label: (el.getAttribute("alt") || el.getAttribute("aria-label") || "").slice(0, 40),
+                  w: Math.round(r.width),
+                  container: Math.round(c.width),
+                  cut,
+                  by: (node.className || "").toString().slice(0, 60),
+                });
+              }
+              break; // the nearest clipping ancestor is the one that matters
+            }
+            node = node.parentElement;
+          }
+        });
+
         // 1. horizontal overflow of the page itself
         const de = document.documentElement;
         if (de.scrollWidth > vw + 1) {
@@ -157,6 +194,15 @@ async function main() {
       if (result.overflow) {
         findings.push({ route, vp: vp.label, type: "overflow", detail: result.overflow });
       }
+      if (result.clipped.length) {
+        findings.push({
+          route,
+          vp: vp.label,
+          type: "clipped",
+          detail: result.clipped.slice(0, 4),
+          count: result.clipped.length,
+        });
+      }
       if (result.smallTargets.length) {
         findings.push({
           route,
@@ -176,7 +222,7 @@ async function main() {
   if (devServer) devServer.kill();
 
   if (!findings.length) {
-    console.log("\n✓ responsive: no overflow or undersized targets at 390 / 768 / 1024 / 1440.\n");
+    console.log("\n✓ responsive: no overflow, clipping or undersized targets at 390 / 768 / 1024 / 1440.\n");
     return;
   }
 
@@ -186,6 +232,12 @@ async function main() {
       console.log(`[overflow] ${f.route} @${f.vp}px — scrollWidth ${f.detail.scrollWidth} > ${f.detail.viewport}`);
       for (const w of f.detail.worst) {
         console.log(`     ${w.tag}.${w.cls} → right edge ${w.right}`);
+      }
+    } else if (f.type === "clipped") {
+      console.log(`[clipped] ${f.route} @${f.vp}px — ${f.count} cut off by an overflow-hidden ancestor`);
+      for (const c of f.detail) {
+        console.log(`     ${c.tag} ${c.w}px inside ${c.container}px, ${c.cut}px cut — "${c.label}"`);
+        console.log(`       clipped by .${c.by}`);
       }
     } else {
       console.log(`[target] ${f.route} @${f.vp}px — ${f.count} under 44px`);

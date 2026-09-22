@@ -6,6 +6,7 @@ import { ArchMask } from "@/components/motifs/arch-mask";
 import { ButtonLink } from "@/components/ui/button-link";
 import { SocialStoryPreview } from "@/components/social-story/social-story-preview";
 import { specialNeedsAccommodations } from "@/lib/content/special-needs";
+import { PHOTO_QUALITY } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Special Needs & Inclusive Care",
@@ -58,6 +59,7 @@ export default function SpecialNeedsPage() {
                 alt="The consultation room at Tic Tac Tooth, a quiet room with a desk and no dental chair"
                 fill
                 sizes="17rem"
+                quality={PHOTO_QUALITY}
                 className="object-cover object-[40%_center]"
               />
             </div>

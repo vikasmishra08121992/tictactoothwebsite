@@ -843,3 +843,105 @@ full-strength logo colours as section grounds, the warm gradient wash behind
 the hero, the paper grain, the tilted sticker, and the mascot on its arch.
 The former is removed; the latter is restored. Both audits still pass clean.
 
+
+## Image resolution pass (September 2026)
+
+The client's report was two sentences: the hero section is spilling, and most
+images are not HD. Both were true, and neither had the cause it looked like.
+
+### The hero spilled because it was sized on the wrong axis
+
+`components/home/hero.tsx` sized the mascot by height — `lg:h-[46rem]`. The
+mascot is an inline SVG with `viewBox="0 0 240 280"`, so fixing its height
+fixes its width: 736px tall is 631px wide, whatever the column happens to be.
+At a 1024px viewport that column is 446px, so the mascot ran 185px past it and
+114px past the viewport. The hero carries `overflow-hidden`, so it was not
+scrolled, it was sliced.
+
+It is now driven by width. The mascot is `w-full` in normal flow, so it cannot
+exceed its column by construction; the arch pedestal and both stickers are
+placed as percentages of the height the mascot establishes, so the whole
+composition scales together. Measured after: 268px wide at 375, 446 at 1024,
+639 at 1440, 731 at 1920, contained at every one — and larger at 1440 than the
+broken version had been, because the broken version's extra width was off the
+edge of the screen.
+
+### `npm run responsive` could not see it, and now can
+
+The check tested `document.scrollWidth` against the viewport. `overflow-hidden`
+clips the child without extending the scroll area, so the page measured clean
+while the mascot was visibly cut in half. A check that cannot catch the bug it
+was written for is worse than no check, because it is trusted.
+
+It now also walks every image, SVG, picture and video up to its nearest
+clipping ancestor and reports anything cut by more than 4px. Verified against
+the original geometry before shipping: the old rule reported clean, the new
+rule reported a 129px cut. Page overflow is the subset of this problem that
+nothing happened to clip.
+
+### "Not HD" was mostly a markup bug, not a photography one
+
+The instinct is to blame the files. The files were fine. `next/image` cannot
+measure a box that does not exist yet, so it trusts the `sizes` attribute —
+and where `sizes` understates the box, the browser dutifully picks a smaller
+candidate and upscales it. Everything downstream looks correct: the master is
+sharp, the optimizer is healthy, the markup is valid. Only the pixels are
+wrong.
+
+Three instances, all understated:
+
+- The Our Space gallery declared one `sizes` of `40vw` for tiles that are
+  either two grid columns wide (~63vw) or one (~31vw). The wide tiles rendered
+  at 911px and were fetching a 640px file — under half what a 2x screen needs.
+  `sizes` is now derived from the `span` the tile already declares, so the two
+  cannot drift apart again.
+- `RoomMedia` **defaulted** `sizes` to `(min-width: 768px) 50vw`, while its
+  only caller placed it in a `lg:grid-cols-2`. Between 768 and 1024 the
+  photograph filled 94vw while claiming 50vw. The default is removed and the
+  prop is required: a default `sizes` on a shared component is a layout
+  assumption the caller cannot see, and this is what that costs.
+- The header logo had no `sizes` at all, so a 58px mark requested `w=1920`, on
+  the critical path, on every page. Now `w=96`.
+
+### What was actually a photography problem
+
+Two things. The masters were 2000px on the long edge, which genuinely capped
+the full-bleed openers; and the two portrait frames used as full-bleed bands
+were only 2560px wide even at 3840 on the long edge, because width is the axis
+the optimizer resizes on. Both fixed by rebuilding from the 6000px camera
+originals — see `public/images/README.md`.
+
+The rebuild is a committed script, `scripts/build-images.mjs`, rather than a
+one-off. It carries the original-to-published mapping, which was recovered by
+fingerprinting rather than guessed: 16x16 normalised greyscale comparison of
+every published file against every original scored under 6 for each correct
+pairing and above 20 for every runner-up, and the aspect ratios matched
+exactly, confirming the published set were straight downscales with no crop to
+preserve. Three files matched nothing — the screenshots from the third batch,
+which is how we know they have no original.
+
+### Quality is 88 for photographs, 75 for everything else
+
+Next 16 defaults `images.qualities` to `[75]` and requires anything else to be
+declared, so the allowlist cannot be driven by a crafted URL. The rooms are
+decorated with painted murals, and thin saturated linework on a pale ground is
+the worst case for both JPEG and WebP chroma handling. 88 for the photography,
+declared once in `lib/images.ts`; the logo and the 200px social-story
+thumbnails stay at 75.
+
+### `priority` is deprecated
+
+Next 16 deprecates it in favour of `preload`. The three LCP photographs now
+use `preload`. The header logo uses `loading="eager"` instead, per the
+guidance in the Next docs: it is above the fold but never the LCP element, and
+a `<head>` preload there would only compete with the real one.
+
+### What is still outstanding
+
+Two files, both listed in `public/images/README.md`: the lit ceiling murals for
+each room, supplied as 764px screenshots with no camera original. They fill a
+720px box, so on a 2x screen they are the only genuinely soft photographs left.
+`npm run images` reports them on every run and will keep doing so until the
+client supplies the originals. It does not fail the run for them — no `sizes`
+can conjure pixels that are not in the file, so that is a different kind of
+problem and is reported as one.

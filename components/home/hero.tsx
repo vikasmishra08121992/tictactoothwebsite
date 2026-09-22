@@ -73,27 +73,41 @@ export function Hero() {
           </p>
         </div>
 
-        {/* the mascot, staged on a bright arch pedestal, filling its half */}
+        {/*
+          The mascot, staged on a bright arch pedestal, filling its half.
+
+          The whole composition is driven by WIDTH. An earlier version sized
+          the mascot by height (lg:h-[46rem]), which fixed its width at 631px
+          from the 240x280 viewBox regardless of how much room the column had
+          — at 1024px that put it 185px outside a 446px column, clipped by the
+          hero's overflow-hidden. Here the mascot is w-full in normal flow, so
+          it can never exceed its column, and the arch and stickers are placed
+          as percentages of the height it establishes so they scale with it.
+        */}
         <div className="relative flex justify-center lg:justify-end">
-          <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-2xl">
-            <div className="shadow-glow-gold absolute inset-x-10 top-24 bottom-6 rounded-full" />
-            <div className="arch relative mt-20 h-[19rem] w-full bg-mint sm:h-[26rem] lg:h-[32rem]" />
+          <div className="relative mx-auto w-[82%] max-w-[20rem] sm:w-full sm:max-w-md lg:mx-0 lg:max-w-none">
+            {/* pedestal, behind the mascot, starting below its crown */}
+            <div className="absolute inset-x-0 bottom-0 top-[22%]">
+              <div className="shadow-glow-gold absolute inset-x-[10%] inset-y-[12%] rounded-full" />
+              <div className="arch relative h-full w-full bg-mint" />
+            </div>
+
             <Mascot
               pose="hero"
-              className="absolute inset-x-0 -top-4 mx-auto h-auto w-[86%] max-w-[22rem] sm:h-[36rem] sm:w-auto sm:max-w-none lg:h-[46rem]"
+              className="relative block aspect-[240/280] h-auto w-full"
             />
 
             <Sticker
               tone="cream"
               tilt="right"
-              className="absolute left-0 top-28 z-10 text-base sm:-left-4 lg:-left-8 lg:top-36"
+              className="absolute left-0 top-[26%] z-10 text-base sm:-left-4 lg:-left-8"
             >
               Laughing gas on site
             </Sticker>
             <Sticker
               tone="coral"
               tilt="left"
-              className="absolute right-0 bottom-12 z-10 text-base sm:-right-3 lg:-right-6 lg:bottom-16"
+              className="absolute right-0 bottom-[10%] z-10 text-base sm:-right-3 lg:-right-6"
             >
               Space or Jungle, you choose
             </Sticker>

@@ -1,14 +1,31 @@
 # Image slots — shot list
 
-All interior photography is the client's own, taken in the finished hospital at
-2000px on the long edge. It is **real photography, not stock**, and must never
-be replaced with stock imagery. No child appears in any frame — see the hard
-rule at the bottom.
+All interior photography is the client's own, taken in the finished hospital.
+It is **real photography, not stock**, and must never be replaced with stock
+imagery. No child appears in any frame — see the hard rule at the bottom.
 
 A second batch of seventeen photographs (September 2026) replaced the original
-seven at roughly double the resolution and filled the most important gaps: the
-Space room, which previously had no photograph at all, the doctor, and the
-consultation room.
+seven and filled the most important gaps: the Space room, which previously had
+no photograph at all, the doctor, and the consultation room.
+
+## How these files are produced
+
+Everything in here except the three noted below is derived from the camera
+originals by `npm run images:build` (`scripts/build-images.mjs`), which holds
+the original-to-published mapping. The originals are 6000px JPEGs of about
+6MB each in `New Picture/`, deliberately **not** in git: nothing serves them
+and they would dominate the repository.
+
+Masters are 3840px on the long edge, matching the largest entry in Next's
+default `deviceSizes` — the optimizer never requests more than that, so a
+larger master would cost repository size and serve no pixel. The two
+photographs used as full-bleed bands behind text are 3840px **wide** instead,
+because width is the axis the optimizer resizes on and capping their long edge
+would have left these portrait frames only 2560px wide.
+
+They were 2000px until September 2026. At that size the Our Space gallery's
+wide tiles, and the two full-bleed openers, were being asked for more pixels
+than the files held. `npm run images` is the check that catches this.
 
 ## In use
 
@@ -47,12 +64,24 @@ anywhere, the page simply has less until they arrive.
 | Sterilisation area | Our Space | Instruments and process visible. The UV chamber appears in the jungle-room shots; a dedicated photograph is a trust-building image for parents and worth taking properly. |
 | Star projector in a dark room | Comfort & Sedation | The astronaut projector is on the space-room counter in daylight; the shot that matters is the room dark with the stars on. |
 
-Supplied in the third batch (September 2026), at low resolution and upscaled
-here: the consultation room with its arched doorway, and both rooms with the
-ceiling mural lit. If higher-resolution originals of those three exist, they
-should replace `consultation/consultation-room_desk-and-arched-doorway.jpg`,
-`rooms/space-room_ceiling-mural-lit.jpg` and
-`rooms/jungle-room_ceiling-mural-lit.jpg` at the same paths.
+### Three files the client still needs to re-supply
+
+The third batch (September 2026) arrived as screenshots rather than camera
+files, so there is no original to rebuild them from and they were left at
+their supplied size. Upscaling them would make them softer, not sharper.
+
+| File | Master | Needed |
+|---|---|---|
+| `rooms/space-room_ceiling-mural-lit.jpg` | 764px | 1440px |
+| `rooms/jungle-room_ceiling-mural-lit.jpg` | 764px | 1440px |
+| `consultation/consultation-room_desk-and-arched-doorway.jpg` | 1360px | 1368px |
+
+The consultation room is 8px short and in practice fine. The two ceiling
+murals fill a 720px box on a 2x screen and are the only genuinely soft
+photographs left on the site. Ask the client for the camera originals — they
+were almost certainly taken on the same phone as the rest — and drop them into
+`New Picture/` with an entry in `scripts/build-images.mjs`. `npm run images`
+reports them until they are replaced.
 
 ## Hard rule
 

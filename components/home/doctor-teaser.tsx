@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { ButtonLink } from "@/components/ui/button-link";
 import { doctor } from "@/lib/content/doctor";
+import { PHOTO_QUALITY } from "@/lib/images";
 
 /**
  * Anything not yet supplied, the degree, the registration number, the
@@ -19,6 +20,7 @@ export function DoctorTeaser() {
             alt={doctor.portrait.alt}
             fill
             sizes="(min-width: 768px) 20rem, 16rem"
+            quality={PHOTO_QUALITY}
             className="object-cover object-[35%_center]"
           />
         </div>

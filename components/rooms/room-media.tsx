@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { PHOTO_QUALITY } from "@/lib/images";
 
 const STARS = [
   [12, 22, 1.6], [28, 12, 1], [41, 34, 2.1], [58, 18, 1.2], [72, 30, 1.7],
@@ -52,20 +53,37 @@ export function StarfieldPlaceholder({
   );
 }
 
-/** Renders the room photograph, or the designed stand-in when there isn't one. */
+/**
+ * Renders the room photograph, or the designed stand-in when there isn't one.
+ *
+ * `sizes` is required rather than defaulted. A default here is a layout
+ * assumption the caller cannot see: this component previously defaulted to
+ * "(min-width: 768px) 50vw" while its only caller placed it in a
+ * lg:grid-cols-2, so between 768px and 1024px the photograph filled 94vw
+ * while claiming 50vw and the browser fetched a candidate at 57% of the
+ * width it needed. Making it required puts the declaration next to the grid
+ * that determines it.
+ */
 export function RoomMedia({
   src,
   alt,
-  sizes = "(min-width: 768px) 50vw, 100vw",
+  sizes,
   className,
 }: {
   src: string;
   alt: string;
-  sizes?: string;
+  sizes: string;
   className?: string;
 }) {
   if (!src) return <StarfieldPlaceholder label={alt} className={className} />;
   return (
-    <Image src={src} alt={alt} fill sizes={sizes} className={cn("object-cover", className)} />
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      sizes={sizes}
+      quality={PHOTO_QUALITY}
+      className={cn("object-cover", className)}
+    />
   );
 }

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Section, SectionHeading } from "@/components/layout/section";
+import { PHOTO_QUALITY } from "@/lib/images";
 
 export function PlayGymSection() {
   return (
@@ -23,6 +24,7 @@ export function PlayGymSection() {
               alt="The play gym, a wooden climbing frame with pastel wall bars, a climbing board with coloured holds, a red cargo net and soft toy animals, above a road-map play mat"
               fill
               sizes="(min-width: 1024px) 30vw, 45vw"
+              quality={PHOTO_QUALITY}
               className="object-cover"
             />
           </div>
@@ -32,6 +34,7 @@ export function PlayGymSection() {
               alt="The play gym's reading side, a teal cloud-and-raindrop wall sculpture, a yellow tree bookshelf on a green disc, and bench seating with the climbing frame beyond"
               fill
               sizes="(min-width: 1024px) 30vw, 45vw"
+              quality={PHOTO_QUALITY}
               className="object-cover"
             />
           </div>

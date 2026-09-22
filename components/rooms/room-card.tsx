@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import type { Room } from "@/lib/content/rooms";
 import { StarfieldPlaceholder } from "@/components/rooms/room-media";
 import { cn } from "@/lib/utils";
+import { PHOTO_QUALITY } from "@/lib/images";
 
 /**
  * One room: the photograph, the name, what is in it.
@@ -30,6 +31,7 @@ export function RoomCard({ room, href }: { room: Room; href: string }) {
             alt={room.imageAlt}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
+            quality={PHOTO_QUALITY}
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (

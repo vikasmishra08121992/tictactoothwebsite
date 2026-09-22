@@ -8,6 +8,7 @@ import { BadgeSystem } from "@/components/no-cavity-club/badge-system";
 import { howTheClubWorks } from "@/lib/content/no-cavity-club";
 import { CertificateGenerator } from "@/components/no-cavity-club/certificate-generator";
 import { Mascot } from "@/components/mascot/mascot";
+import { PHOTO_QUALITY } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "No Cavity Club",
@@ -24,8 +25,11 @@ export default function NoCavityClubPage() {
           src="/images/no-cavity-club/no-cavity-club_mascot-mural-and-rainbow.jpg"
           alt="The No Cavity Club mural: the superhero-tooth mascot with a gold shield, and two tooth characters giving thumbs up beneath a rainbow reading 'You did a great job!'"
           fill
-          priority
+          // `priority` is deprecated in Next 16. This photograph is the LCP
+          // element on this route, so it preloads from <head>.
+          preload
           sizes="100vw"
+          quality={PHOTO_QUALITY}
           className="-z-10 object-cover opacity-30"
         />
         <div className="mx-auto grid max-w-[110rem] items-center gap-10 px-4 py-20 md:grid-cols-[1.2fr_auto] md:px-6 md:py-28">

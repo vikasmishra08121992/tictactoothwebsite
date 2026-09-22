@@ -35,7 +35,8 @@ than an error.
 ```bash
 npm run build   # production build, zero TS errors expected
 npm run a11y       # axe audit, every route
-npm run responsive # overflow + touch-target check at 390/768/1024/1440
+npm run responsive # overflow + clipping + touch-target check at 390/768/1024/1440
+npm run images     # every photo served at the resolution its box needs
 npm run rls        # RLS probe — see below
 npm run content    # everything still unconfirmed, grouped by who resolves it
 ```
@@ -56,9 +57,31 @@ are silent — nothing errors, the data is simply readable.
 per-node JSON report to `exports/a11y-report.json` for triage when it doesn't.
 
 `npm run responsive` walks the same routes at all four breakpoints looking
-for horizontal overflow and interactive targets under 44px — the two layout
-defects that are hardest to catch by eye. It also currently passes clean.
-Inline links inside prose are exempt from the target rule.
+for horizontal overflow, content cut off by an overflow-hidden ancestor, and
+interactive targets under 44px — the layout defects hardest to catch by eye.
+It currently passes clean. Inline links inside prose are exempt from the
+target rule.
+
+The clipping rule exists because the overflow rule alone missed a real bug.
+The hero mascot was sized by height, which made it 631px wide inside a 446px
+column and visibly sliced off at the right edge — but the hero carries
+`overflow-hidden`, so `document.scrollWidth` stayed clean and the run passed.
+Page overflow is only the subset of this problem that nothing happened to
+clip, so both rules are needed.
+
+`npm run images` measures each photograph's real rendered box at every
+breakpoint, works out what a 2x display needs, and compares it to the
+candidate the browser actually chose. `next/image` cannot know how wide an
+image will render — it trusts the `sizes` attribute, so a `sizes` that
+understates the box makes the browser fetch a too-small file and the browser
+upscales it. The file is fine and the markup is wrong, which is invisible in
+code review and is exactly how a photo-led site ends up looking soft. It
+reports files whose master is smaller than any box they fill separately,
+because no `sizes` can conjure pixels that are not in the file; those need a
+better original and do not fail the run.
+
+`npm run images:build` regenerates `public/images` from the client's camera
+originals in `New Picture/` (not in git — see `public/images/README.md`).
 
 `a11y` and `responsive` cover public routes by default. Set `A11Y_STAFF_EMAIL`
 and `A11Y_STAFF_PASSWORD` for a **dev-project** account to include the calendar
@@ -67,7 +90,8 @@ standard the rest of the site holds. Without credentials they say what they
 skipped rather than reporting a clean sweep over fewer routes.
 
 `a11y` and `responsive` start a dev server themselves if one isn't already
-running.
+running. `images` does not: it needs a production build (`npm run build &&
+npm start`), because `next dev` does not always emit the same srcset.
 
 ## Screen map
 
