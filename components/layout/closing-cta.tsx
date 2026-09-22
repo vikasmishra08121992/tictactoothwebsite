@@ -6,19 +6,17 @@ import { Mascot } from "@/components/mascot/mascot";
 import { clinic } from "@/lib/content/site";
 
 /**
- * The single closing call-to-action, used at the foot of every page.
- *
- * This replaces the near-identical crimson block that had been copy-pasted
- * across seven pages with drifting copy and button styling. One component
- * means the primary conversion path looks and behaves identically everywhere.
+ * The single closing call-to-action, at the foot of every page. One
+ * component so the primary path to booking looks and behaves the same
+ * everywhere.
  */
 export function ClosingCta({
-  title = "Ready when you are.",
-  body = "Book online, or reach us the way most parents actually do — a call or a WhatsApp message. All three arrive in the same place.",
+  title = "Ready to book?",
+  body = "Book online, call, or send a WhatsApp message. All three reach the same desk.",
   cta = "Book an appointment",
   /** Show the two parallel contact routes as well as the booking button. */
   showContactRoutes = true,
-  /** The mascot is dropped on the restrained Teen / Special Needs registers. */
+  /** The mascot is dropped on the restrained Special Needs register. */
   showMascot = true,
 }: {
   title?: string;
@@ -38,7 +36,7 @@ export function ClosingCta({
       <div className="relative grid items-center gap-10 md:grid-cols-[1fr_auto]">
         <div className="text-white">
           <h2 className="max-w-2xl text-4xl font-bold md:text-6xl">{title}</h2>
-          <p className="mt-5 max-w-lg text-lg text-white/90">{body}</p>
+          <p className="mt-5 max-w-lg text-xl text-white/90">{body}</p>
 
           <div className="mt-9 flex flex-wrap gap-3">
             <ButtonLink
@@ -60,7 +58,7 @@ export function ClosingCta({
                   className="h-14 rounded-full border-2 border-white/70 bg-transparent px-6 text-base text-white hover:bg-white/15"
                 >
                   <Phone className="size-5" aria-hidden="true" />
-                  Call
+                  {clinic.phoneDisplay}
                 </ButtonLink>
                 <ButtonLink
                   href={clinic.whatsappHref}
@@ -79,7 +77,10 @@ export function ClosingCta({
         </div>
 
         {showMascot && (
-          <Mascot pose="calm" className="mx-auto hidden h-56 w-auto md:block lg:h-72" />
+          <Mascot
+            pose="hero"
+            className="hidden h-64 w-auto justify-self-end md:block lg:h-80"
+          />
         )}
       </div>
     </Section>

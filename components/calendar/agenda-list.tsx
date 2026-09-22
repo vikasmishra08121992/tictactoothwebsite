@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 /**
  * The list view.
  *
- * The time grid is the wrong tool on a phone — a week of columns at a legible
+ * The time grid is the wrong tool on a phone, a week of columns at a legible
  * density is wider than any handset, and reception often works from a phone
  * while away from the desk. It is also the better view for working through a
  * backlog of pending requests, where the question is "who do I need to call"
@@ -117,7 +117,7 @@ export function AgendaList({
                         )}
                       </span>
                       <span className="mt-0.5 block text-sm text-ink/85">
-                        {a.treatment_types?.name ?? "—"}
+                        {a.treatment_types?.name ?? "–"}
                       </span>
                     </span>
 

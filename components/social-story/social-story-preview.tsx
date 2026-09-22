@@ -16,7 +16,7 @@ export function SocialStoryPreview() {
             className="overflow-hidden rounded-xl border border-ink/10 bg-white"
           >
             <div className="relative aspect-square bg-ink/5">
-              {page.imageSrc ? (
+              {page.imageSrc && (
                 <Image
                   src={page.imageSrc}
                   alt={page.imageAlt}
@@ -24,10 +24,6 @@ export function SocialStoryPreview() {
                   sizes="200px"
                   className="object-cover"
                 />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center p-2 text-center text-[10px] font-semibold text-ink/85">
-                  {page.imageAlt}
-                </div>
               )}
             </div>
             <figcaption className="p-2 text-center text-xs font-medium leading-snug text-ink">

@@ -33,7 +33,7 @@ const MOBILE_PATTERN = /^[6-9]\d{9}$/;
  *
  * The slot is fixed by wherever reception clicked, so there is no date picker
  * to get wrong. Duration comes from the treatment type, not from the person
- * booking — the same rule the public path follows, so both produce identically
+ * booking, the same rule the public path follows, so both produce identically
  * shaped appointments.
  */
 export function CreateDrawer({

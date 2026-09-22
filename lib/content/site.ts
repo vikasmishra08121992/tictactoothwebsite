@@ -1,18 +1,18 @@
+import { cleanContent } from "@/lib/content/clean";
 /**
  * The hospital's identity and the facts every page needs.
  *
  * `name` is the single source of the hospital's name. Page copy interpolates
  * it rather than typing "Tic Tac Tooth" by hand, so it can never drift into
  * "the clinic", "the practice" or a half-remembered variant on one page while
- * the rest say something else. A parent should be able to land on any page —
- * from a search result, a WhatsApp link, a friend's screenshot — and know
+ * the rest say something else. A parent should be able to land on any page, * from a search result, a WhatsApp link, a friend's screenshot, and know
  * immediately whose website they are on.
  *
  * Everything factual here that has not been confirmed by the client is a
  * marked placeholder. Nothing on this site invents a number, a year, a
  * qualification or a claim.
  */
-export const clinic = {
+const RAW_CLINIC = {
   name: "Tic Tac Tooth",
   tagline: "Kids Dental Hospital",
 
@@ -29,16 +29,25 @@ export const clinic = {
     "Ahmedabad, Gujarat 380028",
   ],
   landmark: "near Lijjat Khaman, Maninagar",
-  phoneDisplay: "[PLACEHOLDER: +91 9XXXX XXXXX]",
-  phoneHref: "tel:+919000000000",
+  /**
+   * Supplied by the client as Dr. Roshni Chauhan's mobile. It is the only
+   * number provided, so it serves as the hospital's contact number for calls
+   * and WhatsApp alike. [CONFIRM: whether a separate reception landline or
+   * WhatsApp Business number should be shown instead of, or alongside, this.]
+   */
+  phoneDisplay: "+91 76980 99176",
+  phoneHref: "tel:+917698099176",
   whatsappHref:
-    "https://wa.me/919000000000?text=Hi%20Tic%20Tac%20Tooth%2C%20I%27d%20like%20to%20book%20an%20appointment",
+    "https://wa.me/917698099176?text=Hi%20Tic%20Tac%20Tooth%2C%20I%27d%20like%20to%20book%20an%20appointment",
   timings: "[PLACEHOLDER: Mon–Sat, 10:00 AM – 7:00 PM IST]",
 
-  /** Who the hospital is for — the first question a new parent asks. */
+  /** Who the hospital is for, the first question a new parent asks. */
   ages: "Birth to 18 years",
 } as const;
 
+
+/** Review markers stripped, see lib/content/clean.ts. */
+export const clinic = cleanContent(RAW_CLINIC);
 /**
  * The plain-English explanation of what a paediatric dental hospital is.
  *
@@ -48,18 +57,18 @@ export const clinic = {
  * adjectives.
  */
 export const aboutTicTacTooth = {
-  what: `${clinic.name} is a dental hospital that treats only children and teenagers — from a baby's first tooth to an eighteenth birthday. It is not a general dental practice that also sees children.`,
+  what: `${clinic.name} is a dental hospital that treats only children and teenagers, from a baby's first tooth to an eighteenth birthday. It is not a general dental practice that also sees children.`,
 
-  why: "Children's teeth are not small adult teeth. Baby teeth decay faster, hold space for the adult teeth behind them, and need different materials and different timing. Just as importantly, a child who is frightened at four is often still frightened at forty — so how a visit feels matters as much as what is done.",
+  why: "Children's teeth are not small adult teeth. Baby teeth decay faster, hold space for the adult teeth behind them, and need different materials and different timing. Just as importantly, a child who is frightened at four is often still frightened at forty, so how a visit feels matters as much as what is done.",
 
   howWeWork: [
     {
       title: "Your child chooses the room",
-      body: `${clinic.name} has two themed treatment rooms — Smiling Adventures, the space room, and Jungle Smiles, the jungle room. Your child picks which one they sit in. It is a small choice, and it is often the first time a child has been given any control over a medical appointment.`,
+      body: `${clinic.name} has two themed treatment rooms. Smiling Adventures, the space room, and Jungle Smiles, the jungle room. Your child picks which one they sit in. It is a small choice, and it is often the first time a child has been given any control over a medical appointment.`,
     },
     {
       title: "Nothing is used before it is explained",
-      body: "Every instrument is shown, named and demonstrated — usually on a finger or a glove first — before it goes anywhere near your child's mouth. They are told what they will hear and feel, in words they understand.",
+      body: "Every instrument is shown, named and demonstrated, usually on a finger or a glove first, before it goes anywhere near your child's mouth. They are told what they will hear and feel, in words they understand.",
     },
     {
       title: "We do not promise it will not hurt",
@@ -88,7 +97,7 @@ export type NavItem = {
 };
 
 /**
- * Every destination, shown in the navigation at all times — no "More"
+ * Every destination, shown in the navigation at all times, no "More"
  * dropdown. Kept short enough to fit one row on its own line beneath the
  * masthead.
  */

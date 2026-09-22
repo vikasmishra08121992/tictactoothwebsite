@@ -5,7 +5,7 @@ import { clinic } from "@/lib/content/site";
 
 /*
   One link column, not three. The footer previously repeated ten links that
-  all appear in the header already — the only genuinely footer-specific
+  all appear in the header already, the only genuinely footer-specific
   destinations are the ones a person looks *down* for.
 */
 const footerLinks = [
@@ -14,7 +14,6 @@ const footerLinks = [
   { label: "Contact & Location", href: "/contact" },
   { label: "Special Needs & Inclusive Care", href: "/special-needs" },
   { label: "Privacy Notice", href: "/privacy" },
-  { label: "All screens (mockup index)", href: "/mockups" },
 ];
 
 export function Footer() {
@@ -23,16 +22,15 @@ export function Footer() {
       <div className="mx-auto grid max-w-[110rem] gap-12 px-4 py-14 md:grid-cols-[1.3fr_1fr_1fr] md:px-6">
         <div>
           <Logo invert />
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-cream/75">
-            {clinic.name} is a single-location paediatric dental hospital in
-            Maninagar, Ahmedabad. It treats children and teenagers only, from a
-            baby&apos;s first tooth to their eighteenth birthday, including full
-            sensory-friendly and special-needs pathways.
+          <p className="mt-5 max-w-sm text-base text-cream/85">
+            {clinic.name} is a paediatric dental hospital in Maninagar,
+            Ahmedabad. It treats children and teenagers only, from a first
+            tooth to eighteen, including children with additional needs.
           </p>
         </div>
 
         <div>
-          <h2 className="font-display text-sm font-bold uppercase tracking-[0.12em] text-gold">
+          <h2 className="font-display text-base font-bold text-gold">
             Visit &amp; contact
           </h2>
           <ul className="mt-5 space-y-3 text-sm text-cream/85">
@@ -46,10 +44,12 @@ export function Footer() {
                 ))}
               </span>
             </li>
-            <li className="flex items-start gap-2.5">
-              <Clock className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden="true" />
-              {clinic.timings}
-            </li>
+            {clinic.timings && (
+              <li className="flex items-start gap-2.5">
+                <Clock className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden="true" />
+                {clinic.timings}
+              </li>
+            )}
             <li>
               <a
                 href={clinic.phoneHref}
@@ -74,7 +74,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h2 className="font-display text-sm font-bold uppercase tracking-[0.12em] text-gold">
+          <h2 className="font-display text-base font-bold text-gold">
             Quick links
           </h2>
           <ul className="mt-5 space-y-1 text-sm">
@@ -95,9 +95,8 @@ export function Footer() {
       <div className="border-t border-cream/15 px-4 py-6 text-center text-xs text-cream/60 md:px-6">
         <p>
           © {new Date().getFullYear()} {clinic.fullName}, Maninagar, Ahmedabad.
-          Information on this site is general guidance, not a diagnosis, and no
-          claim of a guaranteed outcome is made or implied. Not yet live —
-          pending clinical and legal review.
+          Information on this site is general guidance, not a diagnosis. No
+          outcome is guaranteed.
         </p>
       </div>
     </footer>

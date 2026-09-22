@@ -27,7 +27,7 @@ import {
  * The calendar.
  *
  * View, date and status filter all live in the URL. That is not a stylistic
- * choice — it is the fix for a bug where the arrows moved a local anchor while
+ * choice, it is the fix for a bug where the arrows moved a local anchor while
  * the server had fetched one specific week, so paging forward drew an empty
  * grid and the realtime refresh kept restoring the original range. One source
  * of truth for "what am I looking at", and the server and the grid cannot

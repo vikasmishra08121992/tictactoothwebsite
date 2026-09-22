@@ -12,7 +12,7 @@ import { mergeFamilies, eraseFamily } from "@/lib/records/actions";
 import type { FamilyRecord } from "@/lib/records/queries";
 import { cn } from "@/lib/utils";
 
-/** Age is derived, never stored — a record saying "7" is wrong within a year. */
+/** Age is derived, never stored, a record saying "7" is wrong within a year. */
 function ageFrom(dob: string | null): string {
   if (!dob) return "age not given";
   const b = new Date(dob);
@@ -94,8 +94,7 @@ export function RecordsBrowser({
           <Merge className="size-5 shrink-0 text-ink" aria-hidden="true" />
           <p className="text-sm leading-relaxed text-ink">
             Keeping <strong>{mergeTarget.contact_name}</strong> ·{" "}
-            {mergeTarget.mobile}. Now choose the duplicate to merge into it —
-            its children move across and its visit history comes with them.
+            {mergeTarget.mobile}. Now choose the duplicate to merge into it, its children move across and its visit history comes with them.
           </p>
           <Button
             variant="outline"
@@ -113,7 +112,7 @@ export function RecordsBrowser({
             ? `No records match “${query}”.`
             : "No records yet."
           : `${families.length} record${families.length === 1 ? "" : "s"}${
-              query ? ` matching “${query}”` : " — most recent first"
+              query ? ` matching “${query}”` : ", most recent first"
             }.`}
       </p>
 
@@ -129,7 +128,7 @@ export function RecordsBrowser({
                 "rounded-3xl p-5 shadow-soft md:p-6",
                 // A merged record is de-emphasised with a recessed ground and
                 // a badge, never with `opacity`. Opacity multiplies through
-                // every descendant — text-ink/85 inside an opacity-70 card
+                // every descendant, text-ink/85 inside an opacity-70 card
                 // renders at ~55% and fails contrast, which is how a whole
                 // card of children's details became unreadable.
                 merged ? "bg-portal" : "bg-white",
@@ -144,7 +143,7 @@ export function RecordsBrowser({
 
                 {f.is_provisional && !merged && (
                   <span className="rounded-full bg-blush/40 px-3 py-1 text-xs font-bold text-ink">
-                    Unverified — booked online
+                    Unverified, booked online
                   </span>
                 )}
                 {merged && (
@@ -284,8 +283,8 @@ export function RecordsBrowser({
               be undone and there is no backup copy in the application.
             </p>
             <p className="mt-2 text-sm leading-relaxed text-ink/85">
-              The deletion itself is logged — date, who did it, and the reason
-              below — because that record is what makes the erasure
+              The deletion itself is logged, date, who did it, and the reason
+              below, because that record is what makes the erasure
               demonstrable if anyone asks later.
             </p>
             <p

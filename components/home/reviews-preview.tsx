@@ -1,50 +1,27 @@
-import { ArrowRight, Star, Quote } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Section, SectionHeading } from "@/components/layout/section";
 import { ButtonLink } from "@/components/ui/button-link";
-import { reviews } from "@/lib/content/reviews";
+import { GoogleRatingLine, GoogleReviewCards } from "@/components/reviews/google-reviews";
+import { getGoogleReviews } from "@/lib/reviews/google";
 
-const cardTones = [
-  "bg-blush/25 rotate-[-1.2deg]",
-  "bg-mint/30 rotate-[0.8deg]",
-  "bg-lime/25 rotate-[-0.6deg]",
-];
+/**
+ * Home-page reviews. Renders only when real reviews are available, a home
+ * page with an empty "what parents say" section is worse than one without
+ * the section at all.
+ */
+export async function ReviewsPreview() {
+  const summary = await getGoogleReviews();
+  if (!summary || summary.reviews.length === 0) return null;
 
-export function ReviewsPreview() {
   return (
     <Section tone="white" size="loose">
-      <SectionHeading
-        eyebrow="What parents say"
-        size="large"
-        title="Reviews"
-        description="[REAL GOOGLE REVIEWS TO BE SUPPLIED] — the cards below are placeholder length and shape only."
-        align="center"
-      />
+      <SectionHeading size="large" title="What parents say" align="center" />
+      <div className="mt-4 flex justify-center">
+        <GoogleRatingLine summary={summary} />
+      </div>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {reviews.map((r, i) => (
-          <figure
-            key={i}
-            className={`sticker relative rounded-3xl p-6 ${cardTones[i % cardTones.length]}`}
-          >
-            <Quote
-              className="absolute right-5 top-5 size-8 text-ink/10"
-              aria-hidden="true"
-            />
-            <div className="flex gap-0.5 text-gold" aria-hidden="true">
-              {Array.from({ length: r.rating }).map((_, j) => (
-                <Star key={j} className="size-4 fill-current" />
-              ))}
-            </div>
-            <span className="sr-only">{r.rating} out of 5 stars</span>
-            <blockquote className="mt-4 text-[15px] leading-relaxed text-ink/85">
-              &ldquo;{r.text}&rdquo;
-            </blockquote>
-            <figcaption className="mt-5 text-sm font-bold text-ink">
-              {r.name}
-              <span className="ml-1 font-normal text-ink/85">· {r.date}</span>
-            </figcaption>
-          </figure>
-        ))}
+      <div className="mt-12">
+        <GoogleReviewCards summary={{ ...summary, reviews: summary.reviews.slice(0, 3) }} />
       </div>
 
       <div className="mt-10 flex justify-center">

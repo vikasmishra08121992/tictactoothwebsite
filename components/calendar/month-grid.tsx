@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
  * Month view.
  *
  * Deliberately not a scaled-down week grid. At month scale nobody is reading
- * times — they are answering "which days are heavy" and "when is the clinic
+ * times, they are answering "which days are heavy" and "when is the clinic
  * closed", so each cell shows a count and the first few appointments, and
  * clicking a day drops into the day view where the times are legible.
  *
@@ -127,7 +127,7 @@ export function MonthGrid({
                           {formatTime(a.starts_at, settings.timezone).replace(":00", "")}
                         </span>
                         <span className="truncate font-semibold">
-                          {a.patients?.first_name ?? "—"}
+                          {a.patients?.first_name ?? "–"}
                         </span>
                       </button>
                     </li>

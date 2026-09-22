@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { Phone, MessageCircle } from "lucide-react";
+import { Sticker } from "@/components/ui/sticker";
 import { Section } from "@/components/layout/section";
 import { BookingWizard } from "@/components/booking/booking-wizard";
-import { Sticker } from "@/components/ui/sticker";
 import { getTreatmentTypes, getPublicConfig } from "@/lib/booking/public-data";
 
 export const metadata: Metadata = {
   title: "Book an Appointment",
   description:
-    "Book an appointment at Tic Tac Tooth — or reach us on WhatsApp or by phone instead.",
+    "Book an appointment at Tic Tac Tooth, or reach us on WhatsApp or by phone instead.",
 };
 
 export const dynamic = "force-dynamic";
@@ -20,7 +20,7 @@ export default async function BookPage() {
   ]);
 
   return (
-    <Section tone="wash" size="loose" grain>
+    <Section tone="wash" size="loose">
       <div className="mx-auto max-w-3xl text-center">
         <Sticker tone="mint" tilt="left">
           Six quick steps
@@ -29,9 +29,10 @@ export default async function BookPage() {
           Let&apos;s get you booked in.
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-ink/85 md:text-xl">
-          We ask for your child&apos;s first name and date of birth, and nothing clinical
-          — that part is a conversation with the dentist, not a form field.
-        </p>
+            We ask for your child&apos;s first name and date of birth, and nothing
+          clinical. That part is a conversation with the dentist, not a form
+          field.
+          </p>
 
         {/* the two parallel paths, at equal weight, before the form starts */}
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3 text-sm font-semibold">

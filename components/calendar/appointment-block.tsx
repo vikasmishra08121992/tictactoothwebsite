@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 /**
  * One appointment on the grid.
  *
- * Status is never signalled by colour alone — every state carries a border
+ * Status is never signalled by colour alone, every state carries a border
  * treatment and a text label as well as a hue. See components/calendar/status.
  *
  * The block adapts to the space it has: at 15 minutes there is only room for a

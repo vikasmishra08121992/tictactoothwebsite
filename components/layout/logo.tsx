@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
  * ("TIC TAC TOOTH") but not the "Kids Dental Hospital" descriptor, so that
  * line is set in type alongside it.
  *
- * See DECISIONS.md — the supplied "SVG" is a raster PNG in an SVG wrapper,
+ * See DECISIONS.md, the supplied "SVG" is a raster PNG in an SVG wrapper,
  * not a true vector, so this is a PNG master with Next/Image deriving the
  * responsive sizes.
  */
@@ -18,7 +18,7 @@ export function Logo({
 }: {
   className?: string;
   size?: "default" | "large";
-  /** For dark grounds — flips the descriptor line to cream. */
+  /** For dark grounds, flips the descriptor line to cream. */
   invert?: boolean;
 }) {
   const dims = size === "large" ? "h-20" : "h-14";

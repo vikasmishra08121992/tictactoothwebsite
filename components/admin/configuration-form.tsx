@@ -240,7 +240,7 @@ export function ConfigurationForm({ settings }: { settings: ClinicSettings }) {
           Contact details
         </h2>
         <p className="mt-1 text-sm leading-relaxed text-ink/85">
-          These appear on the public site — header, footer and every call or
+          These appear on the public site, header, footer and every call or
           WhatsApp button.
         </p>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
@@ -279,7 +279,7 @@ export function ConfigurationForm({ settings }: { settings: ClinicSettings }) {
         <p className="mt-1 max-w-2xl text-sm leading-relaxed text-ink/85">
           Records for families with no recent appointment are deleted after
           this period. This is a legal setting under the DPDP Act, not a
-          preference — agree the number with your adviser before changing it.
+          preference, agree the number with your adviser before changing it.
         </p>
         <div className="mt-5 max-w-xs">
           <Field

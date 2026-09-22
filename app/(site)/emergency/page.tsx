@@ -5,22 +5,22 @@ import { clinic } from "@/lib/content/site";
 export const metadata: Metadata = {
   title: "Dental Emergency",
   description:
-    "Dental emergencies at Tic Tac Tooth, Maninagar — knocked-out tooth, bleeding, or severe pain. Exactly what to do in the first 30 minutes, and when to call.",
+    "Dental emergencies at Tic Tac Tooth, Maninagar, knocked-out tooth, bleeding, or severe pain. Exactly what to do in the first 30 minutes, and when to call.",
 };
 
 const firstThirtyMinutes = [
   "Find the tooth. Pick it up by the crown (the white part), never the root.",
-  "If it's dirty, rinse it gently in milk or saline for a few seconds only — do not scrub it.",
+  "If it's dirty, rinse it gently in milk or saline for a few seconds only, do not scrub it.",
   "Try to place it back in the socket facing the right way, if your child can tolerate it. Do not force it.",
   "Can't put it back? Keep it in a cup of milk, or held between cheek and gum. Never store it dry, and never in plain water.",
-  "Call us immediately — the tooth's best chance is being seen within 30 minutes.",
+  "Call us immediately, the tooth's best chance is being seen within 30 minutes.",
 ];
 
 export default function EmergencyPage() {
   return (
     <div className="bg-ink text-cream">
       <div className="mx-auto max-w-3xl px-4 py-12 md:px-6 md:py-16">
-        {/* crimson on ink is only 3.0:1 — blush carries the same alarm at 6.8:1 */}
+        {/* crimson on ink is only 3.0:1, blush carries the same alarm at 6.8:1 */}
         <p className="text-center text-sm font-bold uppercase tracking-widest text-blush">
           Dental Emergency
         </p>
@@ -29,7 +29,7 @@ export default function EmergencyPage() {
         </h1>
         <p className="mx-auto mt-4 max-w-lg text-center text-lg text-cream/85">
           Knocked-out tooth, heavy bleeding, severe pain or swelling, or a
-          jaw injury — don&apos;t wait, and don&apos;t book online. Call
+          jaw injury, don&apos;t wait, and don&apos;t book online. Call
           {" "}{clinic.name} first, then read the steps below while you travel.
         </p>
 
@@ -66,10 +66,10 @@ export default function EmergencyPage() {
               </li>
             ))}
           </ol>
-          <p className="mt-4 text-sm text-ink/85">
-            [CLINICAL REVIEW REQUIRED] This is a general guide, not a
-            substitute for calling us — call while you follow these steps if
-            you can.
+          {/* [CLINICAL REVIEW REQUIRED] */}
+          <p className="mt-4 text-base text-ink/85">
+            This is a general guide, not a substitute for calling. Call while
+            you follow these steps if you can.
           </p>
         </div>
 

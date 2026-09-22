@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Baloo_2, Inter } from "next/font/google";
+import { Baloo_2, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -9,9 +9,20 @@ const baloo = Baloo_2({
   weight: ["500", "600", "700", "800"],
 });
 
-const body = Inter({
+/*
+  Body copy is Plus Jakarta Sans, replacing Inter.
+
+  Inter is a fine interface font and a slightly cold one for paragraphs about
+  a child's first visit to the dentist. Plus Jakarta Sans is more open — a
+  larger x-height and rounder forms — which reads more warmly next to Baloo's
+  rounded display face and holds up better at the larger body size set in
+  globals.css. The client asked for the section write-ups to be more readable;
+  that is a font choice and a size choice together, and this is the font half.
+*/
+const body = Plus_Jakarta_Sans({
   variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {

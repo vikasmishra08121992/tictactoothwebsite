@@ -15,12 +15,12 @@ const tints = [
 
 export function TreatmentsPreview() {
   return (
-    <Section tone="gold" size="loose" grain>
+    <Section tone="gold" size="loose">
       <SectionHeading
-        eyebrow="Care we provide"
+        eyebrow="Treatments"
         size="large"
-        title={`${treatments.length} treatments, from first tooth to wisdom tooth.`}
-        description="Infant exams, fillings and crowns, braces and aligners, sports mouthguards, sedation and general anaesthesia — including everything our teenage patients come in for."
+        title="Everything from a first check-up to braces"
+        description="Check-ups, fillings and crowns, root canal treatment, braces and aligners, extractions and surgery, sedation and general anaesthesia. Each one explains what happens and what your child will feel."
       />
 
       <ul className="stagger mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

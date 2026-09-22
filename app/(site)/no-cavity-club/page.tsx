@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ClosingCta } from "@/components/layout/closing-cta";
+import { Sticker } from "@/components/ui/sticker";
 import { Section, SectionHeading } from "@/components/layout/section";
 import { BrushingChart } from "@/components/no-cavity-club/brushing-chart";
 import { BadgeSystem } from "@/components/no-cavity-club/badge-system";
 import { howTheClubWorks } from "@/lib/content/no-cavity-club";
 import { CertificateGenerator } from "@/components/no-cavity-club/certificate-generator";
-import { Sticker } from "@/components/ui/sticker";
 import { Mascot } from "@/components/mascot/mascot";
 
 export const metadata: Metadata = {
   title: "No Cavity Club",
   description:
-    "Super Smile Savers — a brushing chart, badges, and a shareable certificate for every child who visits Tic Tac Tooth.",
+    "Super Smile Savers, a brushing chart, badges, and a shareable certificate for every child who visits Tic Tac Tooth.",
 };
 
 export default function NoCavityClubPage() {
@@ -37,19 +37,22 @@ export default function NoCavityClubPage() {
               The No Cavity Club
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-cream/85 md:text-xl">
-            It is already painted on the entrance glass at Tic Tac Tooth. Here it is as something your child can actually use — a brushing chart for home, six badges to earn, and a certificate with their own name on it. Every child treated here is in the club from their first visit, free, with nothing to sign up for.
+            It is painted on the reception wall at Tic Tac Tooth. Here it is as
+              something your child can use: a brushing chart for home, six
+              badges to earn, and a certificate with their name on it. Every
+              child treated here is a member from their first visit.
           </p>
           </div>
           <Mascot pose="hero" className="mx-auto hidden h-72 w-auto md:block" />
         </div>
       </div>
 
-      <Section tone="tangerine" size="loose" grain>
+      <Section tone="tangerine" size="loose">
         <SectionHeading
           eyebrow="Badges"
           size="large"
-          title="Earn them at your check-ups"
-          description="Six badges to collect, each handed over in person at the end of an appointment. Every one says what it takes to earn it — because a reward nobody can explain is just a sticker."
+          title="Six badges to earn"
+          description="Each is handed over in person at the end of an appointment, and each says what it takes to earn it."
         />
         <div className="mt-12">
           <BadgeSystem />
@@ -68,12 +71,12 @@ export default function NoCavityClubPage() {
         </div>
       </Section>
 
-      <Section tone="wash" size="loose" grain>
+      <Section tone="wash" size="loose">
         <SectionHeading
-          eyebrow="Make it yours"
+          eyebrow="Certificate"
           size="large"
-          title="Certificate generator"
-          description="Type a first name and watch it appear. In the finished site this downloads as a real image — parents post these, which is the whole point."
+          title="A certificate with your child's name on it"
+          description="Type a first name to see it. It downloads as an image to share."
         />
         <div className="mt-12">
           <CertificateGenerator />
@@ -99,8 +102,8 @@ export default function NoCavityClubPage() {
       </Section>
 
       <ClosingCta
-        title="Join at your next visit."
-        body="Every child treated at Tic Tac Tooth is already a member — from their very first appointment, free, with nothing to sign up for."
+        title="Every child is a member"
+        body="From the first appointment at Tic Tac Tooth, free, with nothing to sign up for."
         cta="Book an appointment"
       />
     </>

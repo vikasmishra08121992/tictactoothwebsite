@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ClosingCta } from "@/components/layout/closing-cta";
 import { Section } from "@/components/layout/section";
 import { ArchMask } from "@/components/motifs/arch-mask";
@@ -22,16 +23,15 @@ export default function SpecialNeedsPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-greige-text">
               Special Needs &amp; Inclusive Care
             </p>
-            <h1 className="mt-6 max-w-2xl text-5xl font-semibold leading-[1.06] tracking-tight text-ink md:text-7xl">
+            <h1 className="max-w-2xl text-5xl font-semibold leading-[1.06] tracking-tight text-ink md:text-7xl">
               Every child is welcome here.
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/85 md:text-xl">
-              Tic Tac Tooth treats children with autism, ADHD, Down syndrome,
+            Tic Tac Tooth treats children with autism, ADHD, Down syndrome,
               cerebral palsy, sensory processing differences, and other
-              disabilities and additional needs. What follows is exactly what we
-              can offer, said plainly and without overclaiming, so you can judge
-              for yourself whether it fits your child before you book.
-            </p>
+              disabilities and additional needs. What follows is what we can
+              offer, said plainly, so you can judge whether it fits your child.
+          </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <ButtonLink
                 href="/book"
@@ -51,12 +51,15 @@ export default function SpecialNeedsPage() {
             </div>
           </div>
 
-          <ArchMask className="mx-auto w-full max-w-[17rem] shadow-lift">
-            <div className="flex aspect-[3/4] w-full items-end bg-midnight p-7">
-              <p className="text-sm leading-relaxed text-cream/75">
-                [PLACEHOLDER PHOTO: the consultation room, or a quiet corner of
-                the clinic. No child in frame — see DECISIONS.md.]
-              </p>
+          <ArchMask className="mx-auto w-full max-w-[17rem]">
+            <div className="relative aspect-[3/4] w-full">
+              <Image
+                src="/images/doctor/doctor_at-desk.jpg"
+                alt="The consultation room at Tic Tac Tooth, a quiet room with a desk and no dental chair"
+                fill
+                sizes="17rem"
+                className="object-cover object-[40%_center]"
+              />
             </div>
           </ArchMask>
         </div>
@@ -99,9 +102,9 @@ export default function SpecialNeedsPage() {
           </h2>
           <div className="space-y-5 text-lg leading-relaxed text-cream/75">
             <p>
-              We offer laughing gas (nitrous oxide) sedation on site. Further sedation
-              options are considered case by case. [CONFIRM: further sedation
-              tiers available.]
+              We offer laughing gas (nitrous oxide) sedation on site. Further
+              sedation options are considered case by case.
+              {/* [CONFIRM: further sedation tiers available.] */}
             </p>
             <p className="text-cream/85">
               Any sedation is discussed and agreed with you in advance. It is
@@ -126,7 +129,7 @@ export default function SpecialNeedsPage() {
             Prepare your child before the visit
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink/85">
-            A downloadable social story — one sentence and one picture per page,
+            A downloadable social story, one sentence and one picture per page,
             in the order your child will experience the visit. Many parents of
             autistic children use a story like this in the days before an
             appointment. Almost no dental clinic provides one.
@@ -138,8 +141,8 @@ export default function SpecialNeedsPage() {
       </Section>
 
       <ClosingCta
-        title="Tell us what your child needs."
-        body="Call or message before booking if it helps — we would rather plan the visit properly than have you arrive hoping for the best."
+        title="Tell us what your child needs"
+        body="Call or message before booking if it helps, we would rather plan the visit properly than have you arrive hoping for the best."
         showMascot={false}
       />
     </div>

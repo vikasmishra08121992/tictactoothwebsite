@@ -38,7 +38,7 @@ export default async function TreatmentDetailPage({
 
   return (
     <>
-      <Section tone="wash" size="loose" grain>
+      <Section tone="wash" size="loose">
         <div className="grid items-start gap-12 md:grid-cols-[1fr_auto]">
           <div>
             <p className="inline-block rounded-full bg-white/70 px-4 py-1.5 text-sm font-bold text-teal-text">
@@ -65,7 +65,7 @@ export default async function TreatmentDetailPage({
             </div>
           </div>
 
-          {/* the mascot explains it in the child's own words — the kid
+          {/* the mascot explains it in the child's own words, the kid
               register showing up inside an otherwise parent-facing page */}
           {treatment.kidExplainer && (
             <ArchMask className="mx-auto w-full max-w-[17rem] shadow-lift">

@@ -22,7 +22,7 @@ const buttonVariants = cva(
       /*
         Sizes raised from the shadcn defaults, which top out at 36px. This
         clinic's primary audience is a parent on a phone, often one-handed
-        with a distressed child — WCAG 2.2 AA wants 24px minimum and the
+        with a distressed child. WCAG 2.2 AA wants 24px minimum and the
         brief asks for 44px, so `default` and up all clear 44. The `xs`/`sm`
         steps remain for dense, non-primary controls only.
       */

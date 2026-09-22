@@ -4,7 +4,7 @@ import { clinic } from "@/lib/content/site";
 
 /**
  * Primary (Book) + two equal-weight parallel actions (Call, WhatsApp),
- * present on every screen per §2 — a parent in India calls or WhatsApps,
+ * present on every screen per §2, a parent in India calls or WhatsApps,
  * they do not fill in a form.
  */
 export function StickyActionBar() {

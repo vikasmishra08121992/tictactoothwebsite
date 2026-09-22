@@ -10,7 +10,7 @@ export type BoardCell = {
 };
 
 /**
- * A keyboard-operable 3×3 grid — the shared interaction engine behind the
+ * A keyboard-operable 3×3 grid, the shared interaction engine behind the
  * treatments board and the 404 game (mechanism C). Arrow keys move focus,
  * Enter/Space activates.
  *

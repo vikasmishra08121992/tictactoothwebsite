@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils";
  * tool: the public site is read once by a parent, this is open all day at a
  * reception desk beside a ringing phone. A persistent rail means the calendar
  * is one click away from anywhere, the current section is always visible, and
- * vertical space — which the calendar grid needs — is not spent on navigation.
+ * vertical space, which the calendar grid needs, is not spent on navigation.
  *
  * It keeps the brand's colour and type but drops the illustration, texture and
  * motion. Charm is right for a parent deciding where to take their child; it

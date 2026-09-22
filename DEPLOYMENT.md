@@ -9,8 +9,6 @@ children's names, dates of birth and parents' mobile numbers.
 
 ---
 
-
- 
 ## 1. Supabase
 
 Create two projects — `tictactooth-dev` and `tictactooth-prod`. Pick the

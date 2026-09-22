@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import { Tv, Sparkles, Wind, MessageSquareText, Quote } from "lucide-react";
 import { ClosingCta } from "@/components/layout/closing-cta";
-import { Section, SectionHeading } from "@/components/layout/section";
 import { Sticker } from "@/components/ui/sticker";
+import { Section, SectionHeading } from "@/components/layout/section";
 import { Mascot } from "@/components/mascot/mascot";
 
 export const metadata: Metadata = {
   title: "Comfort & Sedation",
   description:
-    "Tell-show-do preparation, ceiling TVs, a star and nebula projector, and on-site laughing gas (nitrous oxide) sedation — how we help a child through treatment, honestly.",
+    "Tell-show-do preparation, ceiling TVs, a star and nebula projector, and on-site laughing gas (nitrous oxide) sedation, how we help a child through treatment, honestly.",
 };
 
 const layers = [
   {
     icon: MessageSquareText,
     title: "Tell, show, do",
-    body: "Before anything touches your child's mouth we tell them what it is, show them how it works — often on a finger or a toy first — then do it. Every time, every instrument.",
+    body: "Before anything touches your child's mouth we tell them what it is, show them how it works, often on a finger or a toy first, then do it. Every time, every instrument.",
     tone: "bg-mint/25",
   },
   {
@@ -27,7 +27,7 @@ const layers = [
   {
     icon: Sparkles,
     title: "Star & nebula projector",
-    body: "Turns the room into a night sky. Optional, and switched off the moment a child finds it overstimulating rather than calming — some children love it, some do not, and we follow the child.",
+    body: "Turns the room into a night sky. Optional, and switched off the moment a child finds it overstimulating rather than calming, some children love it, some do not, and we follow the child.",
     tone: "bg-blush/25",
   },
   {
@@ -42,18 +42,17 @@ export default function ComfortAndSedationPage() {
   return (
     <>
       {/* ---- the promise we refuse to make ---- */}
-      <Section tone="wash" size="loose" grain>
+      <Section tone="wash" size="loose">
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
             <Sticker tone="cream" tilt="left">
-              For the parent bracing for a fight in the car park
+              Comfort first
             </Sticker>
             <h1 className="mt-6 max-w-2xl text-5xl font-bold text-ink md:text-6xl">
               We are not going to tell you it won&apos;t hurt.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink/85 md:text-xl">
-              Plenty of clinics advertise painless dentistry. Tic Tac Tooth will not —
-              it is a promise that can be broken in the chair, and a child who
+              Plenty of clinics advertise painless dentistry. Tic Tac Tooth will not, it is a promise that can be broken in the chair, and a child who
               is told it will not hurt and then feels something never fully
               believes an adult in a dental room again.
             </p>
@@ -75,9 +74,9 @@ export default function ComfortAndSedationPage() {
       {/* ---- the four layers ---- */}
       <Section tone="white" size="loose">
         <SectionHeading
-          eyebrow="What we actually do"
+          eyebrow="How it works"
           size="large"
-          title="Four things, stacked."
+          title="Four layers of comfort"
         />
         <div className="stagger mt-12 grid gap-5 sm:grid-cols-2">
           {layers.map(({ icon: Icon, title, body, tone }, i) => (
@@ -103,7 +102,7 @@ export default function ComfortAndSedationPage() {
       </Section>
 
       {/* ---- honesty pull-quote ---- */}
-      <Section tone="ink" size="default" grain>
+      <Section tone="ink" size="default">
         <figure className="mx-auto max-w-3xl text-center">
           <Quote className="mx-auto size-9 text-gold" aria-hidden="true" />
           <blockquote className="mt-5 font-display text-2xl font-bold leading-snug text-cream md:text-4xl">
@@ -117,24 +116,26 @@ export default function ComfortAndSedationPage() {
       </Section>
 
       {/* ---- beyond laughing gas ---- */}
-      <Section tone="lavender" size="loose" grain>
+      <Section tone="lavender" size="loose">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-          <SectionHeading eyebrow="Beyond laughing gas" size="large" title="Further sedation options" />
+          <SectionHeading eyebrow="Further options" size="large" title="Further sedation options" />
           <div className="space-y-4 text-lg leading-relaxed text-ink/80">
+            {/* [CONFIRM: the exact general anaesthetic pathway, in-house or
+                referred, and the referral route if a child needs care beyond
+                what can be delivered on site. Rendered once confirmed.] */}
             <p>
-              [CONFIRM: the exact general anaesthetic pathway — in-house or referred, and the
-              referral pathway if a child needs care beyond what can safely be
-              delivered on site.]
+              Where a child needs more than laughing gas, the options are
+              explained to you in the consultation room first.
             </p>
             <p className="font-semibold text-ink">
-              Whatever the pathway, it is agreed with you in advance — never
-              decided on the day without your consent.
+              Whatever the pathway, it is agreed with you in advance. It is
+              never decided on the day without your consent.
             </p>
           </div>
         </div>
       </Section>
       <ClosingCta
-        title="Questions before you book? Just call."
+        title="Questions before you book? Call us."
         body="Talking it through beforehand is often the single biggest thing that makes the day go well."
         cta="Book an appointment"
       />

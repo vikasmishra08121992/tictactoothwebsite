@@ -13,7 +13,7 @@ import { addClosure, removeClosure } from "@/lib/admin/actions";
  * Holidays and blocked periods.
  *
  * A closure removes those days from the public booking form immediately, but
- * does NOT touch appointments already in the diary — cancelling someone's
+ * does NOT touch appointments already in the diary, cancelling someone's
  * appointment as a side effect of adding a holiday would be a nasty surprise.
  * Reception is told to move them deliberately.
  */
@@ -27,7 +27,7 @@ export function ClosuresPanel({ closures }: { closures: Closure[] }) {
       </h2>
       <p className="mt-1 max-w-2xl text-sm leading-relaxed text-ink/85">
         Closed days disappear from the booking form straight away. Appointments
-        already booked on those days are left alone — check the calendar and
+        already booked on those days are left alone, check the calendar and
         move them yourself.
       </p>
 

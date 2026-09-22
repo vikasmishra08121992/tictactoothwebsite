@@ -5,26 +5,6 @@ import { GridFrame } from "@/components/motifs/grid-frame";
 import { Mascot } from "@/components/mascot/mascot";
 import { clinic } from "@/lib/content/site";
 
-/** Hand-drawn marker underline, for emphasising one word in the headline. */
-function Underline({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 200 16"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-      className={className}
-    >
-      <path
-        d="M4 10 C48 3, 104 13, 196 5"
-        stroke="var(--gold)"
-        strokeWidth="9"
-        strokeLinecap="round"
-        fill="none"
-      />
-    </svg>
-  );
-}
-
 export function Hero() {
   return (
     <div className="wash-warm texture-grain relative overflow-hidden bg-cream">
@@ -38,28 +18,23 @@ export function Hero() {
         className="pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 opacity-[0.09]"
       />
 
-      <div className="relative mx-auto grid max-w-[110rem] items-center gap-12 px-4 py-16 md:px-6 md:py-24 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
+      <div className="relative mx-auto grid min-h-[min(88vh,60rem)] max-w-[100rem] items-center gap-12 px-6 py-16 sm:px-10 md:px-14 md:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12 xl:px-20">
         <div>
           <Sticker tone="gold" tilt="left" className="animate-rise">
-            Maninagar, Ahmedabad · Ages 0–18
+            Maninagar, Ahmedabad · Birth to 18
           </Sticker>
 
-          <h1 className="animate-rise delay-1 mt-6 text-5xl font-bold text-ink sm:text-6xl lg:text-7xl">
-            Dentistry built{" "}
-            <span className="relative inline-block">
-              around
-              <Underline className="absolute -bottom-1 left-0 h-3 w-full" />
-            </span>{" "}
-            your child.
+          <h1 className="animate-rise delay-1 mt-6 text-5xl font-bold text-ink sm:text-6xl lg:text-7xl xl:text-8xl">
+            Dentistry built around your child.
           </h1>
 
-          <p className="animate-rise delay-2 mt-6 max-w-xl text-lg leading-relaxed text-ink/80 md:text-xl">
-            {clinic.name} is a paediatric dental hospital in Maninagar,
-            Ahmedabad, treating children and teenagers only — from a first
-            tooth to an eighteenth birthday. Two themed treatment rooms your
-            child picks between, every instrument explained before it&apos;s
-            used, laughing gas sedation on site, and a real pathway for
-            children with disabilities and sensory needs.
+          <p className="animate-rise delay-2 mt-7 max-w-xl text-xl text-ink/85 xl:text-2xl">
+            {clinic.name} treats children and teenagers only, from a first
+            tooth to an eighteenth birthday. Your child chooses between two
+            themed treatment rooms. Every instrument is explained before it is
+            used. Laughing gas is available on site, and children with
+            disabilities and sensory needs have a proper pathway, planned in
+            advance.
           </p>
 
           <div className="animate-rise delay-3 mt-9 flex flex-wrap items-center gap-3">
@@ -78,7 +53,7 @@ export function Hero() {
               className="h-14 rounded-full border-2 border-ink bg-white/70 px-6 text-base text-ink hover:bg-ink hover:text-cream"
             >
               <Phone className="size-5" aria-hidden="true" />
-              Call now
+              {clinic.phoneDisplay}
             </ButtonLink>
             <ButtonLink
               href={clinic.whatsappHref}
@@ -93,34 +68,34 @@ export function Hero() {
             </ButtonLink>
           </div>
 
-          <p className="animate-rise delay-4 mt-5 text-sm font-medium text-ink/85">
-            Call or WhatsApp us directly — no form needed if your child is in pain.
+          <p className="animate-rise delay-4 mt-5 text-base text-ink/85">
+            If your child is in pain, call. You do not need the form.
           </p>
         </div>
 
-        {/* mascot, staged on a bright arch pedestal */}
+        {/* the mascot, staged on a bright arch pedestal, filling its half */}
         <div className="relative flex justify-center lg:justify-end">
-          <div className="relative w-full max-w-sm">
-            <div className="shadow-glow-gold absolute inset-x-8 top-16 bottom-8 rounded-full" />
-            <div className="arch relative mt-16 h-72 w-full bg-mint md:h-80" />
+          <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-2xl">
+            <div className="shadow-glow-gold absolute inset-x-10 top-24 bottom-6 rounded-full" />
+            <div className="arch relative mt-20 h-[19rem] w-full bg-mint sm:h-[26rem] lg:h-[32rem]" />
             <Mascot
               pose="hero"
-              className="absolute inset-x-0 -top-2 mx-auto h-[26rem] w-auto md:h-[30rem]"
+              className="absolute inset-x-0 -top-4 mx-auto h-auto w-[86%] max-w-[22rem] sm:h-[36rem] sm:w-auto sm:max-w-none lg:h-[46rem]"
             />
 
             <Sticker
               tone="cream"
               tilt="right"
-              className="absolute -left-2 top-24 z-10 md:-left-6"
+              className="absolute left-0 top-28 z-10 text-base sm:-left-4 lg:-left-8 lg:top-36"
             >
               Laughing gas on site
             </Sticker>
             <Sticker
               tone="coral"
               tilt="left"
-              className="absolute -right-1 bottom-10 z-10 md:-right-4"
+              className="absolute right-0 bottom-12 z-10 text-base sm:-right-3 lg:-right-6 lg:bottom-16"
             >
-              Space or Jungle — you choose
+              Space or Jungle, you choose
             </Sticker>
           </div>
         </div>

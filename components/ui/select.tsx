@@ -32,7 +32,7 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
   Heights raised from shadcn's defaults (32px and 28px).
 
   Those are desktop-mouse sizes and fail the 44px touch target this project
-  holds itself to — the same defect found earlier in Button, and for the same
+  holds itself to, the same defect found earlier in Button, and for the same
   reason: the upstream defaults assume a pointer. Fixed here rather than at
   each call site so no future Select can reintroduce it.
 */

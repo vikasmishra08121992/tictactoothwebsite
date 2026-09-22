@@ -47,7 +47,7 @@ import {
 } from "@/lib/scheduling/actions";
 import { cn } from "@/lib/utils";
 
-/** "in 3 hours" / "2 hours ago" — enough precision for a pending countdown. */
+/** "in 3 hours" / "2 hours ago", enough precision for a pending countdown. */
 function relative(target: string, now: number): string {
   const diff = new Date(target).getTime() - now;
   const mins = Math.round(Math.abs(diff) / 60000);
@@ -74,9 +74,9 @@ export function AppointmentDrawer({
   treatmentTypes: TreatmentType[];
   canManage: boolean;
   onClose: () => void;
-  /** Refresh, keeping the drawer open — for edits made in place. */
+  /** Refresh, keeping the drawer open, for edits made in place. */
   onChanged: () => void;
-  /** Refresh and close — for actions that end the conversation. */
+  /** Refresh and close, for actions that end the conversation. */
   onDone: () => void;
 }) {
   const [pending, startTransition] = useTransition();
@@ -141,7 +141,7 @@ export function AppointmentDrawer({
               {formatTime(appointment.ends_at, settings.timezone)}
             </p>
             <p className="mt-1.5 text-sm text-ink/85">
-              {appointment.treatment_types?.name ?? "—"} · {duration} min ·{" "}
+              {appointment.treatment_types?.name ?? "–"} · {duration} min ·{" "}
               <span className="font-mono">{appointment.reference}</span>
             </p>
             <p className="mt-1.5 flex items-center gap-1.5 text-sm text-ink/85">
@@ -204,8 +204,7 @@ export function AppointmentDrawer({
               {family.is_provisional && (
                 <p className="mt-3 rounded-lg bg-gold/25 px-3 py-2 text-xs leading-relaxed text-ink">
                   Booked online, so this family record was created fresh. If they
-                  are an existing patient, merge the records from Records —
-                  never rely on the phone number matching by itself.
+                  are an existing patient, merge the records from Records, never rely on the phone number matching by itself.
                 </p>
               )}
             </div>
@@ -404,7 +403,7 @@ export function AppointmentDrawer({
  * Staff pick a date and time directly rather than choosing from the public
  * availability list. That is deliberate: reception routinely needs to squeeze
  * someone in outside the normal grid, and a tool that refuses is a tool people
- * work around with a paper diary. The database still has the final say — the
+ * work around with a paper diary. The database still has the final say, the
  * exclusion constraint rejects a genuine double-booking and the error comes
  * back as "that slot was taken".
  */

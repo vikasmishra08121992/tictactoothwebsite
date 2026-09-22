@@ -8,9 +8,14 @@ const STARS = [
 ] as const;
 
 /**
- * Stand-in for the Space room, which has not been photographed yet. Drawn
- * rather than left as a grey box so the layout can still be judged in client
- * review — the glowing disc stands in for the backlit ceiling mural.
+ * Drawn stand-in for a room with no photograph.
+ *
+ * Built when the Space room had not been photographed, drawn rather than
+ * left as a grey box so the layout could be judged in client review, with the
+ * glowing disc standing in for the backlit ceiling mural. Both rooms now have
+ * real photography, so this only renders if a room's `imageSrc` is ever
+ * emptied again. Kept because a graceful fallback is better than a broken
+ * image, and because a future third room will be in exactly this position.
  */
 export function StarfieldPlaceholder({
   label,

@@ -1,1 +1,64 @@
-node_modules
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files. A real one was committed to this repository once, with the
+# Supabase service-role key in it, and had to be rotated. Every .env variant
+# is ignored; only the template with empty values is tracked.
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# supabase CLI local state — the linked project ref and container bookkeeping.
+# supabase/config.toml, migrations/ and seed.sql ARE committed; this is not.
+supabase/.temp
+supabase/.branches
+
+# audit and screenshot output
+exports/
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Full-resolution camera originals and loose images dropped in the project
+# root. 100MB+ of JPEGs do not belong in git; the web-sized copies the site
+# actually uses are under public/images.
+New Picture/
+/*.jpeg
+/*.jpg
+/*.zip

@@ -1,3 +1,4 @@
+import { cleanContent } from "@/lib/content/clean";
 export type Milestone = {
   age: string;
   cm: number;
@@ -12,7 +13,7 @@ export type Milestone = {
 /**
  * The dental timeline from birth to eighteen.
  *
- * Mirrors reception's 40–230cm jungle-animal height chart — a child can find
+ * Mirrors reception's 40–230cm jungle-animal height chart, a child can find
  * their own height on the wall and see what is happening in their mouth.
  *
  * Each stage now answers three questions rather than one: what is happening,
@@ -25,14 +26,14 @@ export type Milestone = {
  * not diagnosis. Every child differs, and the whole timeline must be reviewed
  * by the treating dentist before this page goes live.
  */
-export const milestones: Milestone[] = [
+const RAW_MILESTONES: Milestone[]  = [
   {
     age: "0–6 months",
     cm: 55,
     title: "Teething begins",
     body: "Gums may be sore, swollen and tender for days before the first tooth actually breaks through. Extra dribbling, chewing on everything and disturbed sleep are common.",
     whatToDo:
-      "Wipe your baby's gums with a clean, damp cloth once a day, even before any tooth appears. Chilled — not frozen — clean teething rings help. A frozen ring is hard enough to bruise the gum.",
+      "Wipe your baby's gums with a clean, damp cloth once a day, even before any tooth appears. Chilled, not frozen, clean teething rings help. A frozen ring is hard enough to bruise the gum.",
     watchFor:
       "Teething does not cause a high fever, diarrhoea or a rash. If your baby has those, it is something else and worth seeing a doctor about.",
   },
@@ -40,7 +41,7 @@ export const milestones: Milestone[] = [
     age: "~6–10 months",
     cm: 62,
     title: "First tooth",
-    body: "Usually one of the two lower front teeth. Some babies get their first at four months and some at twelve — both are normal.",
+    body: "Usually one of the two lower front teeth. Some babies get their first at four months and some at twelve, both are normal.",
     whatToDo:
       "Start brushing the day the first tooth appears, twice a day, with a soft baby brush and a smear of fluoride toothpaste the size of a grain of rice.",
     watchFor:
@@ -50,7 +51,7 @@ export const milestones: Milestone[] = [
     age: "By age 1",
     cm: 75,
     title: "First dental visit",
-    body: "An infant oral examination by the first birthday, or within six months of the first tooth — whichever comes first.",
+    body: "An infant oral examination by the first birthday, or within six months of the first tooth, whichever comes first.",
     whatToDo:
       "Book a first visit even though nothing is wrong. It is short, gentle, usually done with your baby on your lap, and it sets the pattern that the dentist is somewhere you go routinely rather than somewhere you go when something hurts.",
     watchFor:
@@ -62,7 +63,7 @@ export const milestones: Milestone[] = [
     title: "All twenty baby teeth in",
     body: "The full set of 20 baby teeth is usually through by around age three, finishing with the back molars.",
     whatToDo:
-      "Move to a pea-sized amount of fluoride toothpaste. Brush your child's teeth for them — a three-year-old does not have the hand control to do it properly, however keen they are. Let them have a go first, then you finish.",
+      "Move to a pea-sized amount of fluoride toothpaste. Brush your child's teeth for them, a three-year-old does not have the hand control to do it properly, however keen they are. Let them have a go first, then you finish.",
     watchFor:
       "Encourage spitting rather than rinsing after brushing. Rinsing washes away the fluoride that has just been applied.",
   },
@@ -70,7 +71,7 @@ export const milestones: Milestone[] = [
     age: "Around age 6",
     cm: 115,
     title: "Sealants and the first adult molars",
-    body: "The first permanent molars arrive right at the back, behind the last baby teeth — without any baby tooth falling out first. Many parents never notice they have come through.",
+    body: "The first permanent molars arrive right at the back, behind the last baby teeth, without any baby tooth falling out first. Many parents never notice they have come through.",
     whatToDo:
       "Ask about fissure sealants for these teeth. The biting surface has deep grooves narrower than a toothbrush bristle, and sealing them is quick, painless and needs no drilling.",
     watchFor:
@@ -80,7 +81,7 @@ export const milestones: Milestone[] = [
     age: "Around age 7",
     cm: 125,
     title: "Orthodontic assessment",
-    body: "A good age for an early look at how the jaws are growing and how the bite is meeting — not to fit braces, but to spot anything worth guiding while the jaw is still developing.",
+    body: "A good age for an early look at how the jaws are growing and how the bite is meeting, not to fit braces, but to spot anything worth guiding while the jaw is still developing.",
     whatToDo:
       "Have the assessment even if the teeth look straight. Some of the most useful orthodontic work is done early and invisibly, by guiding growth rather than moving teeth.",
     watchFor:
@@ -90,11 +91,11 @@ export const milestones: Milestone[] = [
     age: "Age 9–12",
     cm: 148,
     title: "Losing baby teeth steadily",
-    body: "The back baby teeth are replaced through this stretch. The mouth can look uneven and gappy for a couple of years — usually nothing is wrong.",
+    body: "The back baby teeth are replaced through this stretch. The mouth can look uneven and gappy for a couple of years, usually nothing is wrong.",
     whatToDo:
       "Keep six-monthly check-ups going. This is the age when brushing quietly slips, because children take it over themselves and nobody is checking.",
     watchFor:
-      "If a baby tooth is lost early — knocked out or extracted — the teeth either side can drift into the gap and block the adult tooth underneath. A space maintainer holds the room until it comes through.",
+      "If a baby tooth is lost early, knocked out or extracted, the teeth either side can drift into the gap and block the adult tooth underneath. A space maintainer holds the room until it comes through.",
   },
   {
     age: "Early teens",
@@ -114,7 +115,7 @@ export const milestones: Milestone[] = [
     whatToDo:
       "Have them assessed before they cause trouble. Knowing early whether there is space changes whether anything needs doing at all.",
     watchFor:
-      "Not every wisdom tooth needs removing. Many sit perfectly well and are best left alone — assessment is about knowing which.",
+      "Not every wisdom tooth needs removing. Many sit perfectly well and are best left alone, assessment is about knowing which.",
   },
   {
     age: "Age 18",
@@ -122,8 +123,12 @@ export const milestones: Milestone[] = [
     title: "Into adult care",
     body: "At eighteen, patients move on to an adult dental practice.",
     whatToDo:
-      "Ask for a summary of your child's dental history to pass on. Eighteen years of records — what was treated, what was watched, how they cope with treatment — is worth handing over rather than starting again.",
+      "Ask for a summary of your child's dental history to pass on. Eighteen years of records, what was treated, what was watched, how they cope with treatment, is worth handing over rather than starting again.",
     watchFor:
       "This is the point where a lot of young adults stop going to a dentist at all. Booking the first adult appointment before they leave makes it far more likely they keep going.",
   },
 ];
+
+
+/** Review markers stripped, see lib/content/clean.ts. */
+export const milestones = cleanContent(RAW_MILESTONES);

@@ -3,7 +3,7 @@
  *
  * Existed as ad-hoc markup on each page before, which is how three pages ended
  * up with three different heading sizes and margins. A shared component is not
- * about saving lines — it is about the tool looking like one tool.
+ * about saving lines, it is about the tool looking like one tool.
  */
 export function PageHeader({
   title,

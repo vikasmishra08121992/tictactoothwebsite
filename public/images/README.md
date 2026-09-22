@@ -1,58 +1,63 @@
 # Image slots — shot list
 
-The interior photography already supplied by the client (jungle room, play gym,
-reception, entrance, No Cavity Club mural) is in use throughout this mockup at
-its original resolution. It is **real client photography, not stock**, and
-should be professionally reshot at high resolution before launch — never
-replaced with stock imagery. Everything else on this page is still a
-placeholder slot.
+All interior photography is the client's own, taken in the finished hospital at
+2000px on the long edge. It is **real photography, not stock**, and must never
+be replaced with stock imagery. No child appears in any frame — see the hard
+rule at the bottom.
 
-## Reshoot priority (do these five first)
+A second batch of seventeen photographs (September 2026) replaced the original
+seven at roughly double the resolution and filled the most important gaps: the
+Space room, which previously had no photograph at all, the doctor, and the
+consultation room.
 
-1. **Space room ceiling mural**, shot from the chair's point of view (looking
-   straight up) — currently no photo exists at all. Used on: Home, Our Space,
-   the Space room panels across the site.
-2. **Jungle room ceiling mural**, shot from the chair's point of view — we
-   have a wide room shot that includes the ceiling mural at an angle; a
-   straight-up shot would read much stronger on Our Space.
-3. **Play gym**, wider establishing shot — current shots are close-in details;
-   one wide shot showing the whole gym would help the Home page.
-4. **Entrance sign, lit at dusk** — we have one usable shot; a second angle
-   (straight-on, no perspective distortion) would help the Our Space
-   opener.
-5. **Star projector in a dark room** — no photo exists. Needed for Comfort &
-   Sedation.
+## In use
 
-## In use (client-supplied, real photography)
+| File | Shows | Used on |
+|---|---|---|
+| `rooms/space-room_chair-tv-and-ceiling-mural.jpg` | Navy chair, ceiling TV, backlit ceiling mural, "Space for Healthy Smiles!" mural | Home, Our Space, social story |
+| `rooms/space-room_wide-from-doorway.jpg` | Space room from the door — chair, tray, UFO and planet mural | Our Space gallery |
+| `rooms/space-room_mural-rocket-and-ufo.jpg` | Rocket, UFO and planets over the cloudscape, counter and sink | Our Space gallery |
+| `rooms/jungle-room_wide-with-ceiling-mural.jpg` | Camel chair beneath "Jungle Smiles, Super Bright!", laughing gas unit and UV chamber visible | Home, Our Space, social story |
+| `rooms/jungle-room_wide-with-glass-partition.jpg` | Jungle room with the etched jungle-glass partition | Our Space gallery |
+| `rooms/jungle-room_mural-wall-detail.jpg` | Watercolour jungle — sloth, monkey, tiger, elephant, giraffe, zebra, lion | Our Space gallery |
+| `play-gym/play-gym_wide-establishing.jpg` | Whole gym: cloud wall, tree shelf, bench, climbing frame | Our Space gallery |
+| `play-gym/play-gym_climbing-wall-and-cargo-net.jpg` | Climbing frame, cargo net, soft animals, road-map mat (portrait) | Home, social story |
+| `play-gym/play-gym_tree-shelf-and-cloud-wall.jpg` | Cloud wall, tree shelf, bench, climbing frame beyond | Home |
+| `play-gym/play-gym_tree-shelf-books-detail.jpg` | Tree shelf close up — Gujarati and English picture books, crochet toys | Our Space gallery |
+| `reception/reception_height-chart-and-bunny-desk.jpg` | Logo wall, jungle-animal height chart, desk | Our Space, social story |
+| `reception/reception_logo-wall-and-desk.jpg` | Logo wall from the door side, teal desk | unused — spare angle |
+| `entrance/entrance_backlit-sign-dusk.jpg` | Dimensional edge-lit sign, straight on | Our Space opener |
+| `no-cavity-club/no-cavity-club_mascot-mural-and-rainbow.jpg` | Superhero tooth mural, "Super Smile Savers!", rainbow (portrait) | Home, No Cavity Club, social story |
+| `no-cavity-club/no-cavity-club_mural-and-reception.jpg` | Same mural in context, with the logo wall and desk | Our Space gallery |
+| `doctor/doctor_portrait-consultation-room.jpg` | Dr. Roshni Chauhan at her desk, facing camera | Meet the Doctor |
+| `doctor/doctor_at-desk.jpg` | Dr. Chauhan working at the laptop, side on | Our Space, home |
+| `consultation/consultation-room_desk-and-arched-doorway.jpg` | Wood desk, botanical wallpaper, framed qualifications, arched doorway into the jungle room | Our Space, Meet the Doctor, social story |
+| `rooms/space-room_ceiling-mural-lit.jpg` | The space room's backlit ceiling mural, lit | Our Space |
+| `rooms/jungle-room_ceiling-mural-lit.jpg` | The jungle room's backlit ceiling mural, lit | Our Space, social story |
+| `brand/logo.png` | The brand mark | header, footer |
+| `brand/logo_reference.png` | Original supplied artwork | reference only |
 
-| File | Used on |
-|---|---|
-| `rooms/jungle-room_wide-with-ceiling-mural.jpg` | Home, Our Space, social story |
-| `rooms/jungle-room_mural-wall-detail.jpg` | Our Space |
-| `play-gym/play-gym_climbing-wall-and-cargo-net.jpg` | Home, social story |
-| `play-gym/play-gym_tree-shelf-and-cloud-wall.jpg` | Home, Our Space |
-| `reception/reception_height-chart-and-bunny-desk.jpg` | Our Space, social story |
-| `entrance/entrance_backlit-sign-dusk.jpg` | Home, Our Space, social story |
-| `no-cavity-club/no-cavity-club_mascot-mural-and-rainbow.jpg` | Home, No Cavity Club, social story |
-| `brand/logo.png` | the real brand mark, in the header and footer |
-| `brand/logo_reference.png` | original supplied artwork, kept for reference |
+## Still needed
 
-## Placeholder slots still needed
+Two shots. Nothing on the site waits on them: no placeholder tile renders
+anywhere, the page simply has less until they arrive.
 
 | Slot | Where | Shot direction |
 |---|---|---|
-| `rooms/space-room.jpg` | Home, Our Space | Navy chair, lavender cloudscape mural, wide angle from the doorway |
-| `rooms/space-ceiling-mural.jpg` | Home, Our Space | Straight up from the chair headrest |
-| Consultation room | Our Space | Greige botanical wallpaper, wood desk, arched doorway, framed qualifications visible |
-| Sterilisation area | Our Space | Instruments and process visible — this is a trust-building shot for parents, not a clinical close-up |
-| Room-choice moment | Social story | A child at the fork between the two room doorways, from behind or side-on (no face) |
-| Tell-show-do moment | Social story | An instrument being shown to a child before use, hands and instrument only, no face |
-| Sticker/certificate moment | Social story, No Cavity Club | Certificate and sticker sheet on the reception counter, no child in frame |
-| Doctor portrait | Meet the Doctor, Home | Consult-room setting, per brand voice — approachable, not stock-corporate |
+| Sterilisation area | Our Space | Instruments and process visible. The UV chamber appears in the jungle-room shots; a dedicated photograph is a trust-building image for parents and worth taking properly. |
+| Star projector in a dark room | Comfort & Sedation | The astronaut projector is on the space-room counter in daylight; the shot that matters is the room dark with the stars on. |
+
+Supplied in the third batch (September 2026), at low resolution and upscaled
+here: the consultation room with its arched doorway, and both rooms with the
+ceiling mural lit. If higher-resolution originals of those three exist, they
+should replace `consultation/consultation-room_desk-and-arched-doorway.jpg`,
+`rooms/space-room_ceiling-mural-lit.jpg` and
+`rooms/jungle-room_ceiling-mural-lit.jpg` at the same paths.
 
 ## Hard rule
 
 No child's face, name, or before/after image anywhere on this site — see
-`DECISIONS.md`. All photography involving the space itself is fine; anything
-involving a child must be reshot as hands/back-of-head/wide-context only,
-until signed parental consent is in place.
+`DECISIONS.md`. Photography of the space itself is fine; anything involving a
+child must be hands, back-of-head or wide-context only, and only once signed
+parental consent is in place. The doctor is an adult and her portrait raises no
+such issue.

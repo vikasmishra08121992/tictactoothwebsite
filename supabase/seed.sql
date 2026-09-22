@@ -27,9 +27,9 @@ insert into clinic_settings (
   }'::jsonb,
   12, 60, 24,
   2, 6, 84,
-  '[PLACEHOLDER: +91 9XXXX XXXXX]',
-  'tel:+919000000000',
-  'https://wa.me/919000000000',
+  '+91 76980 99176',
+  'tel:+917698099176',
+  'https://wa.me/917698099176',
   '[PLACEHOLDER: Mon–Sat, 10:00 AM – 7:00 PM IST]'
 );
 

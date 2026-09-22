@@ -19,7 +19,7 @@ import { useNow } from "@/lib/hooks/use-now";
 import { cn } from "@/lib/utils";
 
 /**
- * The time grid — day and week views are the same component with one column or
+ * The time grid, day and week views are the same component with one column or
  * seven.
  *
  * Built from scratch rather than pulling in a calendar library, as asked.
@@ -28,11 +28,11 @@ import { cn } from "@/lib/utils";
  *
  * Keyboard operability is the part most likely to be lost in a dense grid, so
  * it is built in from the start: the empty-slot layer is a roving-tabindex
- * grid — one tab stop for the whole calendar, arrows to move, Enter to book.
+ * grid, one tab stop for the whole calendar, arrows to move, Enter to book.
  * Tabbing through several hundred individual slots would be unusable.
  *
  * Overlapping appointments are laid out side by side. With one chair they
- * cannot overlap — the exclusion constraint forbids it — but a cancelled
+ * cannot overlap, the exclusion constraint forbids it, but a cancelled
  * appointment and its replacement can share a slot, and a second chair is the
  * likeliest change to this system within a year. Columns cost little now and
  * save a rewrite later.
@@ -46,7 +46,7 @@ import { cn } from "@/lib/utils";
  * 24px WCAG 2.2 AA minimum (2.5.8). 1.7 puts it at 25.5px with the seeded
  * 15-minute grid, and a clinic on a coarser grid only gets more room.
  *
- * It cannot reach 44px — the grid is a map of time, so making a slot 44px tall
+ * It cannot reach 44px, the grid is a map of time, so making a slot 44px tall
  * would stretch a nine-hour day past 1500px. The 44px path is the keyboard
  * (arrows plus Enter) and the "New appointment" button, which is what 2.5.8's
  * equivalent-control exception is for.
@@ -143,7 +143,7 @@ export function TimeGrid({
       const list = raw.get(key) ?? [];
       list.push({
         a,
-        // Clinic-local minutes — never getHours() (the viewer's zone) or
+        // Clinic-local minutes, never getHours() (the viewer's zone) or
         // getUTCHours() (5h30m out here, sliding every block up the grid).
         s: minutesOfDayInTz(a.starts_at, settings.timezone),
         e: minutesOfDayInTz(a.ends_at, settings.timezone),
@@ -282,7 +282,7 @@ export function TimeGrid({
                 satisfy the pattern would announce a table that does not exist.
 
                 What it is instead is a set of real buttons with real labels,
-                navigated by a roving tabindex — one tab stop for the whole
+                navigated by a roving tabindex, one tab stop for the whole
                 calendar, arrows to move, Enter to book. Focus moves to the
                 actual button, so a screen reader reads the slot it is on
                 rather than a container's description of it.

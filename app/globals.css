@@ -13,6 +13,29 @@
   --font-sans: var(--font-body);
   --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
 
+  /*
+    Body type scale, lifted one notch from Tailwind's defaults.
+
+    The client asked for the section write-ups to be more readable. Done here,
+    at the token, rather than by editing `text-lg` to `text-xl` across sixty
+    files: every paragraph on the site moves together and stays in proportion,
+    and nothing can be missed. Headings keep their own scale — they were
+    already large — so only running text grows.
+
+      base  16px → 17px     the default paragraph
+      lg    18px → 19px     section intros and card copy
+      xl    20px → 22px     page-opening paragraphs
+
+    Line-heights are set alongside, because a larger face on the same leading
+    reads tighter, not more readable.
+  */
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.65;
+  --text-xl: 1.375rem;
+  --text-xl--line-height: 1.55;
+
   --color-ink: var(--ink);
   --color-cream: var(--cream);
   --color-coral: var(--coral);
@@ -49,6 +72,8 @@
   --color-greige-text: var(--greige-text);
   --color-portal: var(--portal);
   --color-portal-line: var(--portal-line);
+  --color-tint: var(--tint);
+  --color-tint-line: var(--tint-line);
   --color-sage-deep: var(--sage-deep);
 
   --color-background: var(--background);
@@ -136,6 +161,16 @@
   --portal-line: #dfe1e5;
 
   /*
+    The public site's second ground. White is the page; this is the pale
+    cool tint that alternates with it so long pages have a rhythm without
+    colour-blocking. Palest possible tint of the brand cyan: 1.03:1 against
+    white, so it separates a section without ever reading as a coloured
+    panel. Ink holds 15:1 on it.
+  */
+  --tint: #f3f9f9;
+  --tint-line: #e0eeee;
+
+  /*
     Secondary text is `text-ink/85` everywhere. A solid muted grey was tried
     first, but it only held up on cream — once brand colours became section
     grounds it failed against lavender, mint, gold and tangerine. Ink at 85%
@@ -194,6 +229,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  p {
+    text-wrap: pretty;
+  }
   html {
     @apply font-sans;
     /*
@@ -219,6 +257,8 @@
   h3,
   h4 {
     @apply font-display;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
@@ -265,7 +305,7 @@
     border-radius: 9999px 9999px calc(var(--radius) * 1.5) calc(var(--radius) * 1.5);
   }
 
-  /* Paper grain — keeps large flat colour fields from looking like plastic. */
+  /* Paper grain, keeps large flat colour fields from looking like plastic. */
   .texture-grain {
     position: relative;
   }
@@ -319,8 +359,8 @@
       );
   }
 
-  /* Sticker: a rotated, slightly lifted label — reads as something applied to
-     the page rather than laid out on it. */
+  /* Sticker: a rotated, slightly lifted label, like the one every child
+     leaves with. */
   .sticker {
     box-shadow:
       0 2px 0 0 color-mix(in srgb, var(--ink) 14%, transparent),

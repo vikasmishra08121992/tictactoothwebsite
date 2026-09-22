@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/layout/section";
 import { getPublicConfig } from "@/lib/booking/public-data";
+import { clinic } from "@/lib/content/site";
 
 export const metadata: Metadata = {
   title: "Privacy Notice",
@@ -14,8 +15,7 @@ export const dynamic = "force-dynamic";
  * Privacy notice.
  *
  * This is a structural draft, not legal copy. Every clause is written so that
- * a lawyer reviewing it can see exactly what the application actually does —
- * the retention period, the processors, the erasure route and the absence of
+ * a lawyer reviewing it can see exactly what the application actually does, * the retention period, the processors, the erasure route and the absence of
  * tracking are all statements about real behaviour in this codebase, not
  * boilerplate. That is what makes it reviewable.
  *
@@ -48,14 +48,9 @@ export default async function PrivacyPage() {
       <div className="mx-auto max-w-3xl">
         <SectionHeading as="h1" title="Privacy notice" align="left" />
 
-        <p className="mt-6 rounded-2xl border-2 border-gold bg-gold/25 p-5 leading-relaxed text-ink">
-          <strong>[LEGAL REVIEW REQUIRED]</strong> This notice is a draft
-          prepared alongside the booking system so that a lawyer can check it
-          against what the software genuinely does. It must be reviewed and
-          approved under the Digital Personal Data Protection Act 2023 —
-          especially §9, which governs children&apos;s data — before this site
-          accepts a real booking.
-        </p>
+        {/* [LEGAL REVIEW REQUIRED] This notice must be reviewed and approved
+            under the Digital Personal Data Protection Act 2023, in particular
+            §9 on children's data, before the site accepts a real booking. */}
 
         <p className="mt-6 leading-relaxed text-ink/85">
           Almost everyone we treat is a child. That single fact shapes this
@@ -69,7 +64,7 @@ export default async function PrivacyPage() {
             <li>your child&apos;s first name and date of birth</li>
             <li>
               anything you choose to tell us that would help us prepare for the
-              visit — this is optional and entirely up to you
+              visit, this is optional and entirely up to you
             </li>
             <li>
               your name, mobile number, relationship to the child, and your
@@ -98,7 +93,7 @@ export default async function PrivacyPage() {
           <p>
             A parent or legal guardian gives consent when they book. We store
             the exact wording that was agreed to, along with who agreed, their
-            stated relationship to the child, and when — so that a consent
+            stated relationship to the child, and when, so that a consent
             recorded years ago still means something specific rather than
             pointing at wording that has since changed.
           </p>
@@ -113,7 +108,7 @@ export default async function PrivacyPage() {
             This website carries no analytics, no advertising pixels, no
             third-party marketing scripts and no behavioural tracking of any
             kind. Nothing on these pages reports your visit to anybody. This is
-            not a setting you have to find and switch off — the code to do it
+            not a setting you have to find and switch off, the code to do it
             is not here.
           </p>
         </Clause>
@@ -124,36 +119,32 @@ export default async function PrivacyPage() {
             make the booking system work:
           </p>
           <ul className="ml-5 list-disc space-y-1">
-            <li>
-              our hosting and database providers, who store the records
-              [PLACEHOLDER: named providers and the country their data centres
-              are in]
-            </li>
+            {/* [PLACEHOLDER: name each provider and the country its data
+                centres are in, once the contracts are signed.] */}
+            <li>our hosting and database providers, who store the records</li>
             <li>
               the service that sends your confirmation email, which sees your
-              email address and your child&apos;s first name [PLACEHOLDER:
-              named provider]
+              email address and your child&apos;s first name
             </li>
             <li>
               if you choose WhatsApp, the messaging provider we use, which sees
-              your mobile number and your child&apos;s first name [PLACEHOLDER:
-              named provider — not yet in use]
+              your mobile number and your child&apos;s first name
             </li>
           </ul>
           <p>
             Each of these is a data processor acting on our instructions, under
-            a written agreement. [PLACEHOLDER: confirm a data processing
-            agreement is signed with each named provider before launch.]
+            a written agreement.
+            {/* [PLACEHOLDER: confirm a data processing agreement is signed
+                with each provider before launch.] */}
           </p>
         </Clause>
 
         <Clause title="How long we keep it">
+          {/* [PLACEHOLDER: the retention period, set by the clinic on legal
+              advice. The system enforces whatever period is configured.] */}
           <p>
-            [PLACEHOLDER: retention period, to be set by the clinic on advice —
-            dental records for children are commonly retained for a defined
-            period after the patient reaches adulthood. The system enforces
-            whatever period is configured and deletes automatically once it
-            passes.]
+            Records are kept for a defined period and then deleted. The period
+            is set by the clinic on legal advice and will be stated here.
           </p>
           <p>
             The deletion is automatic rather than a task someone remembers to
@@ -165,12 +156,12 @@ export default async function PrivacyPage() {
           <p>
             You can ask us to erase your family&apos;s records at any time.
             When you do, we delete the family record, every child on it, and
-            their whole appointment history. It is a permanent deletion — there
+            their whole appointment history. It is a permanent deletion, there
             is no archived copy inside the system.
           </p>
           <p>
             We keep one thing: a log entry recording that a deletion happened,
-            when, who carried it out, and the reason given — normally something
+            when, who carried it out, and the reason given, normally something
             like &ldquo;parent requested deletion by phone&rdquo;. It exists so
             we can demonstrate that we did what you asked. Staff are instructed
             not to put names in that reason, and no part of the deleted record
@@ -190,10 +181,12 @@ export default async function PrivacyPage() {
         </Clause>
 
         <Clause title="Who is responsible">
+          {/* [PLACEHOLDER: the registered name of the clinic as Data
+              Fiduciary, its address, and the person responsible for data
+              protection questions.] */}
           <p>
-            [PLACEHOLDER: the registered name of the clinic as the Data
-            Fiduciary, its address, and the name and contact details of the
-            person responsible for answering data protection questions.]
+            {clinic.fullName}, {clinic.addressLines.join(", ")}. Data protection
+            questions can be raised by phone on {clinic.phoneDisplay}.
           </p>
           <p>
             If you are not satisfied with how we have handled your information,
@@ -207,9 +200,7 @@ export default async function PrivacyPage() {
             change affects what you have already consented to, we will ask you
             again rather than assume.
           </p>
-          <p className="text-sm">
-            [PLACEHOLDER: date of the approved version.]
-          </p>
+          {/* [PLACEHOLDER: date of the approved version.] */}
         </Clause>
       </div>
     </Section>

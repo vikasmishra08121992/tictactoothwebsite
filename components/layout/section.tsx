@@ -4,13 +4,15 @@ import { GridFrame } from "@/components/motifs/grid-frame";
 
 /*
   Colour-blocking is the main brightness lever. The brand fills are used at
-  full or near-full strength as section grounds rather than as 15–25% tints —
-  ink clears 7:1 or better on every one of them, so the page can be genuinely
-  colourful without costing legibility.
+  full or near-full strength as section grounds rather than as tints. Ink
+  clears 7:1 or better on every one of them, so the page can be genuinely
+  colourful without costing legibility. The client asked for the logo's
+  colours and this is where they live.
 */
 const tones = {
   cream: "bg-cream text-ink",
   white: "bg-white text-ink",
+  tint: "bg-tint text-ink",
   ink: "bg-ink text-cream",
   midnight: "bg-midnight text-cream",
   wash: "bg-cream text-ink wash-warm",
@@ -24,11 +26,7 @@ const tones = {
   crimson: "bg-crimson-btn text-white",
 } as const;
 
-/**
- * Section shell. `tone` does the colour-blocking that keeps the page from
- * being an unbroken field of cream, and `grain` adds paper texture so large
- * flat colour fields don't read as plastic.
- */
+/** Section shell. `grain` is accepted and ignored, see globals.css. */
 export function Section({
   children,
   className,
@@ -50,7 +48,7 @@ export function Section({
     size === "tight"
       ? "py-12 md:py-16"
       : size === "loose"
-        ? "py-20 md:py-32"
+        ? "py-20 md:py-28"
         : "py-16 md:py-24";
 
   return (
@@ -72,8 +70,8 @@ export function Section({
 }
 
 /**
- * Section heading. The eyebrow carries a hand-drawn grid mark rather than a
- * bullet or a rule — the motif doing real work at small scale.
+ * Section heading. The eyebrow carries the logo's grid mark rather than a
+ * bullet or a rule.
  */
 export function SectionHeading({
   eyebrow,
@@ -93,7 +91,7 @@ export function SectionHeading({
   /** For use on ink / midnight / crimson tones. */
   invert?: boolean;
   size?: "default" | "large";
-  /** Pass "h1" when this heading is the page title — every page needs one. */
+  /** Pass "h1" when this heading is the page title, every page needs one. */
   as?: "h1" | "h2" | "h3";
 }) {
   return (
@@ -124,8 +122,8 @@ export function SectionHeading({
         className={cn(
           "font-bold",
           size === "large"
-            ? "text-4xl md:text-6xl"
-            : "text-3xl md:text-5xl",
+            ? "text-4xl md:text-5xl lg:text-6xl"
+            : "text-3xl md:text-4xl lg:text-5xl",
           invert ? "text-cream" : "text-ink"
         )}
       >

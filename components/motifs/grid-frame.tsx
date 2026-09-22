@@ -2,9 +2,9 @@ import { cn } from "@/lib/utils";
 
 type GridFrameProps = {
   /**
-   * "full"   — all four crossing rules, a real 3×3 board.
-   * "accent" — a single crossing pair, as a section divider mark.
-   * "cells"  — the board plus the logo's coloured cells behind it.
+   * "full", all four crossing rules, a real 3×3 board.
+   * "accent", a single crossing pair, as a section divider mark.
+   * "cells", the board plus the logo's coloured cells behind it.
    */
   variant?: "full" | "accent" | "cells";
   className?: string;
@@ -16,7 +16,7 @@ type GridFrameProps = {
  * board, 404 game) and decoratively (section marks, background motif).
  * Suppressed in Calm mode and in the Teen / Special Needs registers.
  *
- * The rules are deliberately imperfect — slight bow and overshoot, matching
+ * The rules are deliberately imperfect, slight bow and overshoot, matching
  * the marker lettering in the logo. A geometrically perfect grid reads as a
  * spreadsheet.
  */

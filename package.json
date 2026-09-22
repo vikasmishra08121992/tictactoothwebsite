@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "shots": "node scripts/shots.mjs",
     "a11y": "node scripts/a11y.mjs",
     "responsive": "node scripts/responsive-check.mjs",
     "rls": "node scripts/rls-probe.mjs",

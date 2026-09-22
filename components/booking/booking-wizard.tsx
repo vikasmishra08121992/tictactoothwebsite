@@ -74,9 +74,9 @@ const STEP_LABELS = [
 
 const MOBILE_PATTERN = /^[6-9]\d{9}$/;
 
-/** DD/MM/YYYY — the format every other date on this site uses. */
+/** DD/MM/YYYY, the format every other date on this site uses. */
 const fmtDate = (iso: string) => {
-  if (!iso) return "—";
+  if (!iso) return "–";
   const [y, m, d] = iso.split("-");
   return `${d}/${m}/${y}`;
 };
@@ -117,7 +117,7 @@ export function BookingWizard({
   /*
     Availability is stored against the (date, treatment) pair it was fetched
     for, rather than being cleared whenever either changes. Clearing meant a
-    setState in an effect body, and — more importantly — a window in which a
+    setState in an effect body, and, more importantly, a window in which a
     stale list of times was still on screen and clickable while the new one
     loaded. Deriving from the key closes that window: if the key does not
     match, there are no times to show, full stop.
@@ -137,8 +137,7 @@ export function BookingWizard({
 
   /**
    * Availability is fetched, never guessed. The previous static list of times
-   * would happily offer a slot that was booked, closed or past the lead time —
-   * the parent only found out after filling in the rest of the form.
+   * would happily offer a slot that was booked, closed or past the lead time, * the parent only found out after filling in the rest of the form.
    */
   const slotKey =
     data.date && data.treatmentTypeId
@@ -211,7 +210,7 @@ export function BookingWizard({
       if (res.ok) {
         setReference(res.reference);
       } else {
-        // A lost slot is recoverable — send them back to the step that can fix
+        // A lost slot is recoverable, send them back to the step that can fix
         // it rather than leaving a dead error on the confirm screen.
         const lostSlot = /took that time|no longer available|not available/i.test(res.error);
         setErrors({ submit: res.error });
@@ -241,8 +240,7 @@ export function BookingWizard({
         <h2 className="mt-4 text-2xl font-bold text-ink">Request received!</h2>
         <p className="mt-2 leading-relaxed text-ink/85">
           We&apos;ve held {fmtSlot(data.slot)} on {fmtDate(data.date)} for{" "}
-          {data.patientFirstName}. Someone from reception will call to confirm
-          — the appointment isn&apos;t final until they do.
+          {data.patientFirstName}. Someone from reception will call to confirm, the appointment isn&apos;t final until they do.
         </p>
 
         <p className="mt-5 rounded-xl bg-gold/25 px-4 py-3 text-sm text-ink">
@@ -319,7 +317,7 @@ export function BookingWizard({
               <p className="mt-4 rounded-xl bg-crimson/15 p-4 text-sm leading-relaxed text-crimson-text">
                 We can&apos;t load our appointment types right now, so online
                 booking is unavailable for the moment. Please call or WhatsApp
-                us instead — the links are just below.
+                us instead, the links are just below.
               </p>
             ) : (
               <RadioGroup
@@ -367,7 +365,7 @@ export function BookingWizard({
           <div>
             <h2 className="text-xl font-bold text-ink">Which room would you prefer?</h2>
             <p className="mt-1 text-sm text-ink/85">
-              Not sure? Choose &ldquo;No preference&rdquo; — we&apos;ll let your
+              Not sure? Choose &ldquo;No preference&rdquo;, we&apos;ll let your
               child pick on the day.
             </p>
             <RadioGroup
@@ -435,7 +433,7 @@ export function BookingWizard({
 
               {!loadingSlots && slots?.length === 0 && (
                 <p className="mt-2 rounded-xl bg-cream p-4 text-sm leading-relaxed text-ink/85">
-                  Nothing free on {fmtDate(data.date)} — we may be closed, or
+                  Nothing free on {fmtDate(data.date)}, we may be closed, or
                   fully booked. Try another date, or call us and we&apos;ll find
                   something.
                 </p>
@@ -480,7 +478,7 @@ export function BookingWizard({
           <div>
             <h2 className="text-xl font-bold text-ink">About the patient</h2>
             <p className="mt-1 text-sm text-ink/85">
-              Just a first name and date of birth here — anything clinical is a
+              Just a first name and date of birth here, anything clinical is a
               conversation with the dentist, not a form field.
             </p>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -525,7 +523,7 @@ export function BookingWizard({
               </Label>
               <p id="notes-help" className="mt-1 text-xs text-ink/85">
                 Sensory sensitivities, communication preferences, anything that
-                would help this visit go smoothly — entirely up to you to share.
+                would help this visit go smoothly, entirely up to you to share.
               </p>
               <Textarea
                 id="accessibility-notes"
@@ -622,28 +620,28 @@ export function BookingWizard({
           <div>
             <h2 className="text-xl font-bold text-ink">Confirm &amp; consent</h2>
             <div className="mt-4 space-y-1 rounded-xl bg-cream p-4 text-sm text-ink/85">
-              <p><strong className="text-ink">Reason:</strong> {treatment?.name ?? "—"}</p>
+              <p><strong className="text-ink">Reason:</strong> {treatment?.name ?? "–"}</p>
               <p>
                 <strong className="text-ink">Room:</strong>{" "}
                 {data.room === "no_preference"
                   ? "No preference"
-                  : (rooms.find((r) => r.slug === data.room)?.name ?? "—")}
+                  : (rooms.find((r) => r.slug === data.room)?.name ?? "–")}
               </p>
               <p>
                 <strong className="text-ink">Date &amp; time:</strong>{" "}
-                {fmtDate(data.date)} at {data.slot ? fmtSlot(data.slot) : "—"} IST
+                {fmtDate(data.date)} at {data.slot ? fmtSlot(data.slot) : "–"} IST
               </p>
-              <p><strong className="text-ink">Patient:</strong> {data.patientFirstName || "—"}</p>
+              <p><strong className="text-ink">Patient:</strong> {data.patientFirstName || "–"}</p>
               <p>
                 <strong className="text-ink">Parent:</strong>{" "}
-                {data.parentName || "—"} · {data.parentMobile || "—"} ·{" "}
-                {data.relationship || "—"}
+                {data.parentName || "–"} · {data.parentMobile || "–"} ·{" "}
+                {data.relationship || "–"}
               </p>
             </div>
 
             <p className="mt-4 rounded-xl bg-gold/25 p-4 text-sm leading-relaxed text-ink">
               This sends a <strong>request</strong>. We hold the time for you
-              and reception calls to confirm it — you&apos;ll hear from us
+              and reception calls to confirm it, you&apos;ll hear from us
               before the appointment is final.
             </p>
 

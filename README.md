@@ -3,10 +3,8 @@
 The website and booking system for Tic Tac Tooth, a paediatric dental hospital
 in Maninagar, Ahmedabad.
 
-It began as a design mockup and is now an application: parents book online,
-requests land in a receptionist's calendar, and an administrator configures the
-clinic from the browser. The public site and the design system are unchanged
-from the approved mockup.
+Parents book online, requests land in a receptionist's calendar, and an
+administrator configures the clinic from the browser.
 
 - [`DECISIONS.md`](./DECISIONS.md) — every architectural and compliance
   decision, the reasoning behind each, and what still needs client or legal
@@ -26,8 +24,7 @@ cp .env.example .env.local   # then fill in from your Supabase project
 npm run dev
 ```
 
-Then open `http://localhost:3000`. Start at `/mockups` for an index of every
-public screen.
+Then open `http://localhost:3000`.
 
 Without Supabase credentials the public site still runs — the marketing pages
 need no database, and the booking form says so and points at the phone and
@@ -37,11 +34,15 @@ than an error.
 
 ```bash
 npm run build   # production build, zero TS errors expected
-npm run shots   # captures every route at 390px and 1440px into /exports
 npm run a11y       # axe audit, every route
 npm run responsive # overflow + touch-target check at 390/768/1024/1440
 npm run rls        # RLS probe — see below
+npm run content    # everything still unconfirmed, grouped by who resolves it
 ```
+
+`npm run content` lists every fact the site is still waiting on. The markers
+live in the source as bracketed notes and are stripped before anything
+renders, so a parent never sees them and the audit never loses them.
 
 `npm run rls` is the most important check in the project. The anon key ships
 inside the client bundle, so anything enforced in React or a server action can
@@ -65,8 +66,8 @@ and admin forms — the calendar grid is the likeliest place to lose the AA
 standard the rest of the site holds. Without credentials they say what they
 skipped rather than reporting a clean sweep over fewer routes.
 
-`shots`, `a11y` and `responsive` start a dev server themselves if one isn't
-already running.
+`a11y` and `responsive` start a dev server themselves if one isn't already
+running.
 
 ## Screen map
 
@@ -86,7 +87,6 @@ already running.
 | `/book` | Six-step booking wizard, WhatsApp equal-weight |
 | `/contact` | Location, timings, accessibility |
 | `/reviews` | Reviews (placeholder content, shape only) |
-| `/mockups` | Index of every screen |
 | 404 | Playable tic-tac-toe against the mascot |
 
 ## Signature mechanisms built

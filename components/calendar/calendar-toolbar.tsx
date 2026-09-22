@@ -30,7 +30,7 @@ const PERIOD: Record<CalendarView, string> = {
  *
  * Every control writes to the URL rather than to local state. That is what
  * makes the range the server fetched and the range the grid draws the same
- * thing — they used to be able to disagree, and the calendar would show an
+ * thing, they used to be able to disagree, and the calendar would show an
  * empty week with no indication anything was wrong.
  */
 export function CalendarToolbar({
@@ -90,7 +90,7 @@ export function CalendarToolbar({
         </div>
 
         {/*
-          The page's h1. The calendar has no separate title bar — the range IS
+          The page's h1. The calendar has no separate title bar, the range IS
           the title, and inventing a second heading above it would push the
           grid down for the sake of a word. It is polite-live because the
           arrows change it without a navigation a screen reader would announce.
@@ -99,7 +99,7 @@ export function CalendarToolbar({
           aria-live="polite"
           className="font-display text-lg font-bold text-ink"
         >
-          <span className="sr-only">Appointment calendar — </span>
+          <span className="sr-only">Appointment calendar, </span>
           {label}
         </h1>
 

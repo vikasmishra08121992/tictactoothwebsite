@@ -4,18 +4,13 @@ import { rooms } from "@/lib/content/rooms";
 
 export function RoomsPreview() {
   return (
-    <Section tone="lavender" size="loose" grain>
+    <Section tone="lavender" size="loose">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHeading
-          eyebrow="Pick your room"
+          eyebrow="Two treatment rooms"
           size="large"
-          title={
-            <>
-              The space <em className="not-italic text-crimson-btn">is</em> the
-              treatment.
-            </>
-          }
-          description="Every child chooses Space or Jungle before we begin. It is a real choice, made by them, and it changes how the whole appointment feels."
+          title="Your child picks the room"
+          description="Your child chooses Space or Jungle before anything begins. It is a small choice, and for many children the first they have ever been given in a medical appointment."
         />
       </div>
 

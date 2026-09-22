@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
   Ink on the brand fills, not each colour's `-text` variant. Those variants
   were derived for use ON cream; placed on their own saturated colour they
   land around 3.6:1 and fail AA. Ink clears 5.6:1 or better on every fill
-  here — coral is the one exception, so it is lightened to 75% first.
+  here; coral is the one exception, so it is lightened to 75% first.
 */
 const tones = {
   gold: "bg-gold text-ink",
@@ -26,8 +26,7 @@ const tilts = {
 
 /**
  * A label that reads as something stuck onto the page rather than laid out
- * on it — borrowed from the sticker every child leaves with. Rotation and
- * shadow are stripped in Calm mode.
+ * on it, like the sticker every child leaves with.
  */
 export function Sticker({
   children,

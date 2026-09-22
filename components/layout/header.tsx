@@ -21,7 +21,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-cream/95 backdrop-blur supports-[backdrop-filter]:bg-cream/85">
-      {/* utility bar — contact routes, always reachable */}
+      {/* utility bar, contact routes, always reachable */}
       <div className="hidden items-center justify-end gap-4 bg-ink px-6 text-xs text-cream md:flex">
         <a
           href={clinic.phoneHref}
@@ -136,7 +136,7 @@ export function Header() {
 
       {/*
         Full navigation on its own row. Every destination is visible at all
-        times — no dropdown — which only fits once the nav has a line to
+        times, no dropdown, which only fits once the nav has a line to
         itself rather than competing with the logo and CTAs.
       */}
       <nav

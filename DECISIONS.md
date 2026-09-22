@@ -603,3 +603,243 @@ Worth carrying forward: the screenshot deck is generated but not automatically
 regenerated, so it silently drifts from the site. Regenerate it before any
 client review rather than trusting what is in the folder.
 
+---
+
+## Second photography batch (September 2026)
+
+Seventeen photographs at 2000px replaced the original seven at roughly half
+that. Every frame was checked against the hard rule before use: **no child
+appears in any of them.**
+
+### What they resolved
+
+- **The Space room** was reshoot priority #1 — it had no photograph at all and
+  rendered as a drawn starfield stand-in on every page. It now has three real
+  shots, including the one that matters: the chair beneath the ceiling TV and
+  the backlit ceiling mural. The `StarfieldPlaceholder` component is kept as a
+  fallback but no longer renders anywhere.
+- **The doctor.** The nameplate on the consultation-room desk is legible in the
+  client's own photograph — *Dr. Roshni Chauhan, Pediatric Dentist* — and is
+  used as the name on the Meet the Doctor page. That is evidence, not
+  invention. The degree, registration number and biography stay as
+  placeholders: a framed certificate is visible on the shelf behind her but
+  cannot be read, and guessing at it would be exactly the invented fact this
+  site refuses to carry. "Pediatric" is kept in the American spelling because
+  it is what the client had made.
+- **The consultation room**, previously a placeholder slot on Our Space.
+- **The play gym wide shot**, reshoot priority #3.
+- **The room slogans**, now recorded verbatim from the walls: *Space for
+  Healthy Smiles!* and *Jungle Smiles, Super Bright! — Healthy Teeth, Happy
+  Times!*
+
+### What they did not
+
+The sterilisation area still has no dedicated photograph — the UV chamber
+appears in the jungle-room shots, but a trust-building image for parents is
+worth taking properly. The star projector is on the space-room counter in
+daylight; the shot that matters is the room dark. Both ceiling murals are only
+seen at an angle. `public/images/README.md` has the full remaining list.
+
+### The database is gone
+
+Discovered while running the post-change audits: the Supabase hostname
+`yrlkonmcjiycrghmphne.supabase.co` no longer resolves — *non-existent domain*,
+with other hosts resolving normally. The project has been idle since 26 August;
+free-tier projects pause after a week of inactivity and are eventually removed.
+This is the failure mode `DEPLOYMENT.md` warned about, on the dev project
+rather than production — which is the right place to learn it.
+
+Nothing in the codebase is affected. The public site renders without a
+database by design. The portal returns a deliberate 503, and the booking form
+says it cannot load appointment types and points at the phone. Restoring is
+the walkthrough in `TESTING.md` from step 1: a new project, `npm run
+db:bundle`, paste, new keys in `.env.local`, `create-admin`. Nothing in the
+old project needs recovering — it held one test booking.
+
+---
+
+## Client review round: treatments, contact number, typography
+
+### Treatments — grouped, extended, nothing removed
+
+The client reviewed the flat list of eighteen and said it was too many to take
+in, and that several treatments actually offered were missing. Both true.
+
+Eight were added, all marked `[CLINICAL REVIEW REQUIRED]` throughout: root
+canal treatment, pulpotomy, pulp capping, regenerative endodontics,
+frenectomy / tongue-tie correction, jaw expansion, surgical extraction, and
+minor surgical procedures. The first six are the client's own list under their
+own heading, "Advanced dental treatments"; the existing pulpectomy sits with
+them because it is the same family of procedure.
+
+**Nothing was removed.** The client said the list was long, not which entries
+to cut, and deleting a service they provide would be a worse outcome than a
+long page. The length problem is solved by grouping instead — six headings a
+parent can scan for the one that matches what they were told — and the count
+is now twenty-six, up from eighteen, without the page feeling longer. If the
+client does want entries removed, they should name them.
+
+Each new entry describes the procedure in general terms a parent can follow.
+None asserts anything about how this hospital in particular performs it, what
+it costs, or how long it takes. A line in a draft group description — "done
+here, not referred elsewhere" — was caught and removed for exactly that
+reason; it is a claim about the client's practice that nobody has confirmed.
+
+### The contact number
+
+The client supplied `+91 7698099176` as Dr. Roshni Chauhan's mobile. It is
+the only number provided, so it is now the hospital's contact number for calls
+and WhatsApp on every page, in the seed data, and against the doctor's own
+record. That resolves the most visible placeholder on the site — the phone
+number in the header, footer, hero and emergency page — and the admin
+overview's "still placeholders" warning clears with it. A `[CONFIRM]` notes
+that a separate reception or WhatsApp Business number may be wanted instead.
+
+### Typography — a font change and a size change, at the token
+
+The client asked for the section write-ups to be more readable, in a
+different, modern font, and larger.
+
+**Font.** Body copy moves from Inter to Plus Jakarta Sans. Inter is a good
+interface face and a slightly cold one for paragraphs about a child's first
+visit to the dentist; Plus Jakarta Sans has a larger x-height and rounder
+forms, reads more warmly beside Baloo's rounded display face, and holds up at
+the larger size. Headings keep Baloo — they were not the problem.
+
+**Size.** Lifted one notch across the whole body scale by redefining the
+theme tokens rather than editing classes in sixty files: `text-base` 16→17px,
+`text-lg` 18→19px, `text-xl` 20→22px, with line-heights set alongside because
+a larger face on the same leading reads tighter, not looser. Every paragraph
+on the site moves together and in proportion, and nothing can be missed. The
+responsive check was re-run at all four breakpoints afterwards: no overflow.
+
+---
+
+## Removing the tells
+
+The client supplied a reference page and asked for the same register:
+minimal, detailed, and nothing that reads as generated. Measured before
+starting, the site had 225 em-dashes in its copy, 121 bracketed review
+markers rendering inside paragraphs, a tilted "sticker" above every h1, a
+grain texture on 35 sections, 26 rotated elements, a drawn mascot in ten
+places and a colour-blocked section ground cycling through seven brand fills.
+Each of those is a habit, and together they are a signature.
+
+### Markers stay in the source and leave the page
+
+The bracketed markers are how the site refuses to invent facts, and `npm run
+content` reads them from the source files. They also rendered, in brackets,
+in the middle of sentences. The two jobs are now separate: every content
+module runs its export through `cleanContent()` (`lib/content/clean.ts`),
+which strips the markers before render, and a string that was nothing but a
+marker becomes empty. Components treat empty as absent, so a credential that
+is not known is not shown rather than shown as a note. Markers that lived
+inline in page JSX moved into source comments, where the audit still finds
+them. The outstanding-items count is unchanged; the site just stopped
+displaying its own to-do list.
+
+### Three grounds, not thirteen
+
+Sections were colour-blocked in mint, blush, lavender, lime, tangerine, gold
+and crimson at full strength. The reference does the opposite: white, a pale
+tint, a dark ground for the closing call to action, and the photographs and
+type carry the colour. `Section` now resolves every tone to one of three, so
+no page had to change to calm down. Grain, washes, sticker tilt and shadow
+are inert; the classes remain so nothing breaks, and draw nothing.
+
+### The hero is a photograph
+
+It used to be a drawn mascot on an arch pedestal with two tilted labels and a
+gradient behind it. It is now the space room, photographed, next to one
+headline, one paragraph and three ways to get in touch. The mascot exists on
+the reception wall, painted, in the photographs further down.
+
+### A child's name was on the page
+
+The No Cavity Club teaser floated a sample certificate over the photograph
+reading "Aarav is a Super Smile Saver". The hard rule is no child's name
+anywhere on the site, and a sample name is still a name. Removed. The
+special-needs teaser led with "1 in 5" in a dark arch, a statistic with no
+source; also removed, along with a heading that called special-needs families
+"the audience every other clinic ignores", which was both a comparison the
+brief forbids and a tone the client does not want.
+
+### Em-dashes, mechanically, with one caveat
+
+285 were converted by rule: an aside becomes a comma, a new sentence becomes
+a full stop. The page-level copy was rewritten by hand and reads clean. The
+deep content (treatment steps, parent FAQs) was converted by rule, and a rule
+cannot tell an aside from an independent clause, so a few comma splices
+remain where a full stop would have been better. Readable, not perfect, and
+flagged here rather than claimed otherwise. The conversion also touched code:
+four `?? "—"` fallbacks became `?? ", "` and were caught by a grep for the
+pattern and restored to an en-dash.
+
+### Reviews come from Google or do not appear
+
+The Places API, fetched on the server and cached for six hours, returns the
+rating, the count, and the five reviews Google considers most relevant.
+Nothing loads in the browser, so it stays inside the no-third-party-scripts
+rule. When the key or place ID is unset the section does not render and the
+page links to the profile. There are no placeholder reviews anywhere any more.
+Set `GOOGLE_PLACES_API_KEY` and `GOOGLE_PLACE_ID`.
+
+### The mockup index and the screenshot deck are gone
+
+`/mockups`, `npm run shots`, `exports/*.png` and `tic-tac-tooth-mockups/` are
+deleted at the client's request. The deck had already drifted from the site
+twice; a generated artefact nobody regenerates is a liability, not a record.
+
+---
+
+## Third photo batch, colour back, no photo placeholders
+
+### Three low-resolution photographs, upscaled
+
+The consultation room with its arched doorway, and both treatment rooms with
+the ceiling mural lit: exactly three of the shots on the still-needed list.
+They arrived at 382–680px, which looks like a save from a web preview. They
+were upscaled twofold with Lanczos resampling, mildly sharpened and
+level-balanced, and are used as gallery tiles at moderate size rather than
+full-bleed. Upscaling cannot recover detail that was never captured; if the
+originals exist on a phone they should replace these at the same paths.
+`public/images/README.md` says so.
+
+### Photo placeholders are gone from the site
+
+The client asked that nowhere on the site show a slot waiting for a
+photograph. Every remaining social-story frame now has a real image (the
+arched doorway is, literally, "I choose which room I go into"), the
+sterilisation tile is removed rather than labelled "photograph to follow",
+and the social-story preview no longer has a branch that renders the alt text
+as a stand-in. Two genuine gaps remain, listed in the README, and nothing on
+the site waits on them.
+
+### The doctor's qualification
+
+Supplied by the client: BDS, MDS (Paediatric and Preventive Dentistry). The
+registration number and biography are still to come; both are hidden until
+they arrive rather than shown as notes.
+
+### Colour was never the problem
+
+The previous pass mapped every brand ground to white or a pale tint, and the
+client pushed back: keep the logo colours and the fun. Correct. What made the
+site read as generated was decoration applied by rule, not the palette. The
+brand colours return as section grounds at soft strength (mint, lime,
+lavender, gold, blush, tangerine at 40–60%), ink clears 4.5:1 on every one,
+and the home page has a colour rhythm again. Grain, tilt, the sample child's
+name and the sourceless statistic stay gone.
+
+### The look is back; the tells stay gone
+
+The client's verdict on the de-slop pass: the tooth mascot, the original
+colours and the gradients were good and should not have gone. Correct, and
+recorded so the next pass does not repeat the mistake. What reads as
+generated is copy and habit: bracketed notes in sentences, an em-dash in
+every second line, a sample child's name, a statistic with no source, a
+comparison with a named competitor. What reads as a brand is the brand:
+full-strength logo colours as section grounds, the warm gradient wash behind
+the hero, the paper grain, the tilted sticker, and the mascot on its arch.
+The former is removed; the latter is restored. Both audits still pass clean.
+

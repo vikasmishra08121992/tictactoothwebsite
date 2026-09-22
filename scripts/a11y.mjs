@@ -29,7 +29,6 @@ const routes = [
   "/privacy",
   "/auth/sign-in",
   "/reviews",
-  "/mockups",
   "/this-page-does-not-exist",
 ];
 

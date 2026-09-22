@@ -3,16 +3,16 @@ import { cn } from "@/lib/utils";
 export type MascotPose = "hero" | "calm" | "brushing" | "sleeping";
 
 const poseLabels: Record<MascotPose, string> = {
-  hero: "The Tic Tac Tooth mascot — a smiling tooth in a gold crown and red cape, one fist raised, holding a gold shield with the Tic Tac Tooth logo",
-  calm: "The Tic Tac Tooth mascot — a smiling tooth in a gold crown, standing calmly with a reassuring expression",
+  hero: "The Tic Tac Tooth mascot, a smiling tooth in a gold crown and red cape, one fist raised, holding a gold shield with the Tic Tac Tooth logo",
+  calm: "The Tic Tac Tooth mascot, a smiling tooth in a gold crown, standing calmly with a reassuring expression",
   brushing:
-    "The Tic Tac Tooth mascot — a smiling tooth in a gold crown, brushing with a toothbrush",
+    "The Tic Tac Tooth mascot, a smiling tooth in a gold crown, brushing with a toothbrush",
   sleeping:
-    "The Tic Tac Tooth mascot — a tooth in a gold crown, sleeping peacefully",
+    "The Tic Tac Tooth mascot, a tooth in a gold crown, sleeping peacefully",
 };
 
 /**
- * [CLIENT TO NAME] — the superhero-tooth mascot, drawn from the No Cavity Club
+ * [CLIENT TO NAME], the superhero-tooth mascot, drawn from the No Cavity Club
  * entrance mural. Never rendered on /special-needs, which keeps a plain register.
  */
 export function Mascot({
@@ -42,7 +42,7 @@ export function Mascot({
                C92 190, 90 130, 94 64 Z"
             fill="var(--crimson)"
           />
-          {/* inner fold — a flat red silhouette reads as a bib, a folded one reads as a cape */}
+          {/* inner fold, a flat red silhouette reads as a bib, a folded one reads as a cape */}
           <path
             d="M94 64
                C68 78, 50 122, 48 178
@@ -59,7 +59,7 @@ export function Mascot({
         NOTE: the entrance mural shows this character with a raised fist. At
         this scale a drawn fist reads as a lollipop or a magnifier, so the
         heroic read is carried by the cape, crown and logo shield instead.
-        Flagged in DECISIONS.md — the production mascot should be vectorised
+        Flagged in DECISIONS.md, the production mascot should be vectorised
         from the mural by an illustrator, fist included.
       */}
 

@@ -7,8 +7,7 @@ import { StickyActionBar } from "@/components/layout/sticky-action-bar";
  * sticky action bar.
  *
  * This lives one level below the root layout on purpose. When it was in the
- * root layout it wrapped *everything*, including the staff sign-in page —
- * which then rendered a second `<main>` inside this one (three axe violations)
+ * root layout it wrapped *everything*, including the staff sign-in page, * which then rendered a second `<main>` inside this one (three axe violations)
  * and, worse, showed a receptionist the marketing navigation and an
  * "Emergency" bar while they were trying to log in.
  *

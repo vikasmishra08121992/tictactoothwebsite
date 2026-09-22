@@ -65,7 +65,7 @@ export function PeoplePanel({
               });
               if (res.ok) {
                 // Shown once. Supabase never reveals it again, and there is no
-                // self-service reset — the admin has to hand it over directly.
+                // self-service reset, the admin has to hand it over directly.
                 setIssued({ email, password });
                 setAdding(false);
                 toast.success("Account created");
@@ -90,8 +90,8 @@ export function PeoplePanel({
                 value={role}
                 onValueChange={(v) => setRole(v as AppRole)}
                 items={{
-                  receptionist: "Receptionist — calendar and patients",
-                  admin: "Administrator — everything, including this page",
+                  receptionist: "Receptionist, calendar and patients",
+                  admin: "Administrator, everything, including this page",
                 }}
               >
                 <SelectTrigger id="role" className="mt-1.5 w-full">
@@ -99,10 +99,10 @@ export function PeoplePanel({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="receptionist">
-                    Receptionist — calendar and patients
+                    Receptionist, calendar and patients
                   </SelectItem>
                   <SelectItem value="admin">
-                    Administrator — everything, including this page
+                    Administrator, everything, including this page
                   </SelectItem>
                 </SelectContent>
               </Select>
@@ -123,7 +123,7 @@ export function PeoplePanel({
           <p className="mt-2 font-mono text-lg font-bold text-ink">{issued.password}</p>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink/85">
             This is shown once and cannot be retrieved. Give it to them
-            directly, in person or over the phone — not over email or WhatsApp,
+            directly, in person or over the phone, not over email or WhatsApp,
             because it opens a system holding patient records. Ask them to
             change it once they are in.
           </p>

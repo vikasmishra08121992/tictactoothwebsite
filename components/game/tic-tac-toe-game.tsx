@@ -100,7 +100,7 @@ export function TicTacToeGame() {
 
   const statusText = !result
     ? turn === "player"
-      ? "Your move — pick a square."
+      ? "Your move, pick a square."
       : "The mascot is thinking…"
     : result === "draw"
       ? "A tie game! Well played."
